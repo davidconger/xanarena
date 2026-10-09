@@ -33,11 +33,11 @@ While `src` and `embed` are both empty, each concept shows its placeholder. Conc
 
 Six letter-size flyers live in `flyers/` (gallery at `flyers/index.html`), each with a QR code to the watch page. Flyers 1, 2 and 3 are portrait posters. Flyers 1B (the tape), 2B (the fence) and 3B (the ticket) are quieter landscape versions; they set landscape on their own when printed.
 
-1. Set the real address in `flyers/flyer-config.js`. Every QR code and printed URL updates from it. While it still points at example.com, an orange draft note shows on screen (it never prints).
+1. The address lives in `flyers/flyer-config.js` (now `https://www.xanarena.com/`). Every QR code and printed URL updates from it. If it ever points at example.com, an orange draft note shows on screen (it never prints).
 2. Open a flyer and print with paper size **Letter**, margins **None**. Background colors print automatically.
 3. Scan a test print before running copies.
 
-QR codes are drawn locally by `flyers/vendor/qrcode.js` (qrcode-generator by Kazuhiko Arase, MIT license).
+QR codes are drawn locally by `flyers/vendor/qrcode.js` (qrcode-generator by Kazuhiko Arase, MIT license). A standalone copy of the code for other print or social use is in `flyers/qr/`: `xanarena-qr.svg` (vector, any size) and `xanarena-qr.png` (2409 px square, white border included). Regenerate them if the address in `flyer-config.js` changes.
 
 ## Easter eggs
 
