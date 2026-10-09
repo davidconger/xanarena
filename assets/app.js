@@ -300,7 +300,7 @@
     eject: function () {
       if (ytId) video.rewind();
       else { video.pause(); video.currentTime = 0; }
-      if (document.fullscreenElement) document.exitFullscreen();
+      exitFull();
       setLcd('EJECT');
       osd('Eject', 'eject', 'Exiting stage...house left.');
       if (ytId) backToPreroll();
@@ -311,11 +311,44 @@
       osd(video.muted ? 'Mute' : 'Sound on', null, null, 1400);
     },
     full: function () {
-      if (document.fullscreenElement) { document.exitFullscreen(); return; }
-      if (screen.requestFullscreen) screen.requestFullscreen();
-      else if (video.webkitEnterFullscreen) video.webkitEnterFullscreen();
+      if (fullElement() || filled) { exitFull(); return; }
+      var req = screen.requestFullscreen || screen.webkitRequestFullscreen;
+      if (req) {
+        var p = req.call(screen);
+        if (p && p.catch) p.catch(function () { setFill(true); });
+      } else if (!ytId && video && video.webkitEnterFullscreen) video.webkitEnterFullscreen();
+      else setFill(true);
     }
   };
+
+  /* ---------- full screen ---------- */
+
+  // iPhone Safari can't make an element full screen, so the TV fills the window instead.
+  var filled = false;
+  var fillExit = null;
+  function fullElement() { return document.fullscreenElement || document.webkitFullscreenElement; }
+  function exitFull() {
+    if (fullElement()) (document.exitFullscreen || document.webkitExitFullscreen).call(document);
+    setFill(false);
+  }
+  function setFill(on) {
+    if (on === filled) return;
+    filled = on;
+    if (!fillExit) {
+      fillExit = document.createElement('button');
+      fillExit.type = 'button';
+      fillExit.className = 'fill-exit';
+      fillExit.setAttribute('aria-label', 'Exit full screen');
+      fillExit.innerHTML = '&times;';
+      fillExit.addEventListener('click', function (e) { e.stopPropagation(); setFill(false); });
+      screen.appendChild(fillExit);
+    }
+    root.classList.toggle('is-filled', on);
+    document.documentElement.classList.toggle('xan-filled', on);
+  }
+  document.addEventListener('keydown', function (e) {
+    if (filled && e.key === 'Escape') setFill(false);
+  });
 
   function wireVideo() {
     var playBtn = root.querySelector('[data-action="play"]');
