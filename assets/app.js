@@ -76,7 +76,7 @@
   }
   root.style.setProperty('--d', Math.abs(tracking));
 
-  /* ---------- deep cuts: counter, YYZ light, captions, codes ---------- */
+  /* ---------- deep cuts: counter, YYZ light, codes ---------- */
 
   var DEEP_CUT = 21 * 60 + 12;
   var counterNow = 0;
@@ -150,16 +150,6 @@
       o.start(t);
       o.stop(t + ms / 1000 + .02);
     } catch (err) { /* no audio, no problem */ }
-  }
-
-  var CC = ['Off', 'English', 'Canadian', 'Troll', 'Blah blah blah'];
-  var ccIndex = 0;
-  function cycleCaptions(btn) {
-    ccIndex = (ccIndex + 1) % CC.length;
-    var label = CC[ccIndex];
-    btn.setAttribute('aria-pressed', String(ccIndex !== 0));
-    osd('CC ' + label, null, label === 'Blah blah blah' ? 'Blah blah blah. Blah blah blah blah blah.' : null, 1800);
-    announce.textContent = 'Captions: ' + label;
   }
 
   var typed = '';
@@ -438,6 +428,9 @@
     var ticker = 0;
     var listeners = {};
     function emit(type) { (listeners[type] || []).forEach(function (fn) { fn(); }); }
+    function captionsOff() {
+      try { player.unloadModule('captions'); player.unloadModule('cc'); } catch (e) { /* not loaded yet */ }
+    }
 
     loadYouTubeApi().then(function () {
       player = new YT.Player(holder, {
@@ -453,6 +446,7 @@
           iv_load_policy: 3,
           playsinline: 1,
           rel: 0,
+          cc_load_policy: 0,
           origin: location.origin
         },
         events: {
@@ -465,8 +459,12 @@
             emit('loadedmetadata');
             if (wantPlay) player.playVideo();
           },
+          // The film has its subtitles burned in, so YouTube's own captions (auto-generated,
+          // or forced on by a viewer's settings) would double them up. Keep them unloaded.
+          onApiChange: captionsOff,
           onStateChange: function (e) {
             state = e.data;
+            if (state === 1) captionsOff();
             clearInterval(ticker);
             if (state === 1) ticker = setInterval(function () { emit('timeupdate'); }, 250);
             if (state === 1 && !playing) { playing = true; emit('play'); }
@@ -500,10 +498,18 @@
     };
   }
 
+  // The film plays clean; the pre-roll keeps its VHS look. The FX key can still flip it either way.
+  function setFx(on) {
+    var key = root.querySelector('[data-action="fx"]');
+    if (key) key.setAttribute('aria-pressed', String(on));
+    document.body.dataset.fx = on ? 'on' : 'off';
+  }
+
   var nudgeTimer;
   function insertTape() {
     if (mode !== 'placeholder') return;
     clearTimeout(reelTimer);
+    setFx(false);
     vcr.classList.add('is-loading');
     setTimeout(function () { vcr.classList.remove('is-loading'); }, 700);
     glitch();
@@ -527,6 +533,7 @@
 
   function backToPreroll() {
     clearTimeout(nudgeTimer);
+    setFx(true);
     mode = 'placeholder';
     root.dataset.mode = mode;
     osdCounter.classList.remove('is-on');
@@ -556,11 +563,9 @@
 
     if (action === 'track-up') return setTracking(1);
     if (action === 'track-down') return setTracking(-1);
-    if (action === 'cc') return cycleCaptions(btn);
     if (action === 'fx') {
       var on = btn.getAttribute('aria-pressed') !== 'true';
-      btn.setAttribute('aria-pressed', String(on));
-      document.body.dataset.fx = on ? 'on' : 'off';
+      setFx(on);
       osd(on ? 'VHS FX on' : 'VHS FX off', null, null, 1400);
       return;
     }

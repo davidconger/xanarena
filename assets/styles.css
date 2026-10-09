@@ -819,9 +819,7 @@ html.xan-filled, html.xan-filled body { overflow: hidden; }
   .tv__band { display: none; }
 }
 
-/* ---------- easter eggs: YYZ light, CC ---------- */
+/* ---------- easter eggs: YYZ light ---------- */
 
 .led { transition: opacity .04s linear; }
 .led.is-off { opacity: .12; box-shadow: none; }
-
-[data-action="cc"][aria-pressed="true"] { color: var(--green); }
