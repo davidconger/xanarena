@@ -47,7 +47,7 @@ QR codes are drawn locally by `shared/vendor/qrcode.js` (qrcode-generator by Kaz
 
 The site runs on the Azure App Service `xanarena` (resource group `xanarena`). Basic auth, FTP and publish profiles stay off; both routes below sign in with Microsoft Entra ID.
 
-**GitHub Actions** (`.github/workflows/deploy.yml`): every push to `main` uploads the site, minus the Markdown files and `.github`. One-time setup:
+**GitHub Actions** (`.github/workflows/deploy.yml`): publishing is a manual step. On GitHub, open **Actions > Deploy to Azure App Service > Run workflow**. It uploads `main`, minus the Markdown files and `.github`. Pushing commits doesn't deploy anything. One-time setup:
 
 1. Push this folder to a GitHub repo with a `main` branch.
 2. Create a user-assigned managed identity, give it the **Website Contributor** role on the `xanarena` web app, and add a federated credential for the repo's `main` branch (`repo:<owner>/<repo>:ref:refs/heads/main`).
@@ -82,7 +82,7 @@ concept-*/              index.html, styles.css, app.js per concept (concept-1d-y
 flyers/                 printable flyers, flyer-config.js (URL), flyer.css, flyer.js
 easter-eggs/            easter egg lab (index.html) and the 404 page
 EASTER-EGGS.md          easter egg ideas and fact check
-.github/workflows/      deploy.yml (GitHub Actions deploy to Azure)
+.github/workflows/      deploy.yml (manual GitHub Actions deploy to Azure)
 ```
 
 Fonts load from Google Fonts. Everything else is local.
