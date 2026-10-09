@@ -50,8 +50,10 @@ The site runs on the Azure App Service `xanarena` (resource group `xanarena`). B
 **GitHub Actions** (`.github/workflows/deploy.yml`): publishing is a manual step. On GitHub, open **Actions > Deploy to Azure App Service > Run workflow**. It uploads only `index.html`, `404.html` and `assets/` from `main`. Pushing commits doesn't deploy anything. One-time setup:
 
 1. Push this folder to a GitHub repo with a `main` branch.
-2. Create a user-assigned managed identity, give it the **Website Contributor** role on the `xanarena` web app, and add a federated credential for the repo's `main` branch (`repo:<owner>/<repo>:ref:refs/heads/main`).
-3. Add three repo secrets from that identity: `AZURE_CLIENT_ID`, `AZURE_TENANT_ID`, `AZURE_SUBSCRIPTION_ID`.
+2. Create a user-assigned managed identity, give it the **Website Contributor** role on the `xanarena` web app, and add a federated credential for the repo's `main` branch. GitHub now sends a subject with owner and repo IDs, so use the exact one from the first failed run's error (for this repo: `repo:davidconger@65508239/xanarena@1411203752:ref:refs/heads/main`).
+3. Add three repo secrets from that identity: `AZURE_CLIENT_ID`, `AZURE_TENANT_ID`, `AZURE_SUBSCRIPTION_ID`. All of this is already done for `davidconger/xanarena` (identity `xanarena-deploy`).
+
+To deploy from this machine instead of the Actions tab: `gh workflow run deploy.yml -R davidconger/xanarena`.
 
 **From this machine** with the Azure CLI, after `az login`, zip `index.html`, `404.html` and `assets/` and run:
 
