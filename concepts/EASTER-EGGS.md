@@ -2,7 +2,7 @@
 
 These are the Rush easter egg ideas. Each one is written for true fans, the band and the crew to catch, and each explains the real reference so it can be checked before anything ships.
 
-**Status:** concepts 1, 1B and 1C all have these eggs working: the YYZ light, the 21:12 counter, the song-title on-screen text ("Down the tubes tour" and the CC button included), the secret codes and the backline credit. Concept 1C (`concept-1c-deep-cuts/`) also has "Distant early warning" and "Rated R40". Everything else is mocked up in the lab at `easter-eggs/index.html`, including the 404 page at `easter-eggs/404.html`.
+**Status:** concepts 1, 1B and 1C all have these eggs working: the YYZ light, the 21:12 counter, the song-title on-screen text ("Down the tubes tour" and the CC button included), the secret codes and the backline credit. Concept 1C (`concept-1c-deep-cuts/`) also has "Distant early warning" and "Rated R40". Everything else is mocked up in the lab at `easter-eggs/index.html`, which also previews the 404 page. The 404 page itself is live at the site root (`404.html`).
 
 ## In the player (concepts 1 and 1B)
 
@@ -86,7 +86,7 @@ These are the Rush easter egg ideas. Each one is written for true fans, the band
   Anika is German, and "Schlagzeugerin" is the feminine form of drummer. It welcomes her by carrying on Neil's naming tradition.
 
 ### "Moving pictures" error page
-- **Where:** a 404 page.
+- **Where:** the site's 404 page (`404.html` at the root, live).
 - **Copy idea:** movers carrying a framed picture, with "This page has been moved."
 - **Why it works:** the *Moving Pictures* (1981) cover is a triple pun: movers carrying paintings, onlookers who are emotionally moved, and it's an album named after movies. A missing page is literally something that got moved.
 

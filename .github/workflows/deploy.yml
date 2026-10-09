@@ -17,13 +17,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Allowlist: only the live site ships. concepts/, flyers/ and docs stay in the repo.
       - name: Stage site files
         run: |
           mkdir -p _site
-          rsync -a ./ _site/ \
-            --exclude '.git*' \
-            --exclude '_site' \
-            --exclude '*.md'
+          cp index.html 404.html _site/
+          cp -r assets _site/
 
       - uses: azure/login@v2
         with:

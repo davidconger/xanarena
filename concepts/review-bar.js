@@ -1,28 +1,24 @@
-// Review-only concept switcher. Remove this script tag from the chosen concept before launch.
-// The site root (index.html) hosts one concept and names it with <body data-concept="...">.
+// Review-only concept switcher for the pages in concepts/. The live watch page (../../index.html,
+// concept 1D) doesn't load it, so the published site stays clean.
 (function () {
   var concepts = [
     { dir: 'concept-1-be-kind-rewind', name: 'Be Kind, Rewind', label: '1' },
     { dir: 'concept-1b-viewer-beware', name: 'Viewer Beware', label: '1B' },
     { dir: 'concept-1c-deep-cuts', name: 'Deep Cuts', label: '1C' },
-    { dir: 'concept-1d-youtube', name: 'Be Kind, Rewind (YouTube)', label: '1D', atRoot: true },
+    { dir: 'concept-1d-youtube', name: 'Be Kind, Rewind (YouTube)', label: '1D', href: '../../index.html' },
     { dir: 'concept-2-midnight-rental', name: 'Midnight Rental', label: '2' },
     { dir: 'concept-3-house-left', name: 'House Left', label: '3' }
   ];
-  var rootConcept = document.body.dataset.concept;
-  var base = rootConcept ? '' : '../';
   var path = location.pathname.replace(/\\/g, '/');
-  var current = concepts.findIndex(function (c) {
-    return rootConcept ? c.dir === rootConcept : path.indexOf('/' + c.dir + '/') !== -1;
-  });
+  var current = concepts.findIndex(function (c) { return path.indexOf('/' + c.dir + '/') !== -1; });
   if (current < 0) return;
 
   var bar = document.createElement('nav');
   bar.setAttribute('aria-label', 'Design concepts');
   bar.innerHTML =
-    '<a class="xrb-all" href="' + base + 'concepts.html">All concepts</a>' +
+    '<a class="xrb-all" href="../index.html">All concepts</a>' +
     concepts.map(function (c, i) {
-      var href = base + (c.atRoot ? 'index.html' : c.dir + '/index.html');
+      var href = c.href || '../' + c.dir + '/index.html';
       return '<a href="' + href + '"' + (i === current ? ' aria-current="page"' : '') +
         ' title="' + c.name + '">' + c.label + '</a>';
     }).join('') +
