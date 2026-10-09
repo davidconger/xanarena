@@ -1,0 +1,582 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Xanarena: Easter egg lab</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="../shared/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Montserrat:wght@400;500;600;700&family=Oswald:wght@400;500&family=VT323&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green: #5ee04a;
+      --green-hi: #8ef07a;
+      --ink: #eef3ee;
+      --muted: #a3b3a6;
+      --panel: #0a130d;
+      --line: #1d3a24;
+      --amber: #f2b13c;
+      --red: #ff6b6b;
+      --mono: 'VT323', monospace;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: clamp(2.5rem, 6vw, 4.5rem) 1rem 3rem;
+      overflow-x: hidden;
+      font-family: 'Montserrat', sans-serif;
+      color: var(--ink);
+      background: radial-gradient(ellipse 70% 40% at 50% 0%, rgba(70, 200, 70, .14), transparent 70%), #030604;
+    }
+    .top { text-align: center; }
+    .sign { margin: 0; font: 400 .78rem/1 'Oswald', sans-serif; letter-spacing: .5em; text-transform: uppercase; color: var(--green); }
+    h1 { margin: .6rem 0 .6rem; font: 900 clamp(2rem, 7vw, 3.6rem)/1 'Cinzel', serif; text-transform: uppercase; color: var(--green-hi); }
+    .lede { margin: 0 auto 1.2rem; max-width: 62ch; color: var(--muted); font-size: .95rem; line-height: 1.6; }
+    .legend { display: flex; flex-wrap: wrap; justify-content: center; gap: .5rem .9rem; margin: 0 0 2.4rem; padding: 0; list-style: none; font-size: .8rem; color: var(--muted); }
+    .legend li { display: flex; align-items: center; gap: .45rem; }
+
+    .tag { display: inline-block; padding: .3rem .55rem; border: 1px solid currentColor; border-radius: 2px; font: 500 .7rem/1 'Oswald', sans-serif; letter-spacing: .14em; text-transform: uppercase; white-space: nowrap; }
+    .tag--live { color: var(--green); }
+    .tag--mock { color: var(--amber); }
+    .tag--ask { color: var(--red); }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); gap: 1.4rem; max-width: 1180px; margin: 0 auto; }
+    .egg { display: flex; flex-direction: column; min-width: 0; padding: 1.2rem; border: 1px solid var(--line); border-radius: 4px; background: var(--panel); }
+    .egg--wide { grid-column: 1 / -1; }
+    .egg__tags { display: flex; flex-wrap: wrap; gap: .4rem; }
+    .egg h2 { margin: .8rem 0 1rem; font: 700 1.15rem/1.25 'Montserrat', sans-serif; }
+    .demo { position: relative; display: grid; place-items: center; gap: .9rem; min-height: 170px; margin-bottom: 1rem; padding: 1rem; border-radius: 3px; background: #050906; }
+    .egg p { margin: 0 0 .6rem; color: var(--muted); font-size: .85rem; line-height: 1.6; }
+    .egg p b { color: var(--ink); font-weight: 600; }
+    .egg p:last-child { margin-bottom: 0; }
+
+    .btns { display: flex; flex-wrap: wrap; justify-content: center; gap: .5rem; }
+    .btn { min-height: 44px; padding: .6rem 1rem; border: 1px solid var(--green); border-radius: 3px; color: var(--green); background: transparent; font: 600 .74rem/1 'Montserrat', sans-serif; letter-spacing: .12em; text-transform: uppercase; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; }
+    .btn:hover, .btn:focus-visible { color: #041006; background: var(--green); outline: none; }
+    .btn[aria-pressed="true"] { color: #041006; background: var(--green); }
+
+    /* YYZ beacon */
+    .deck { display: flex; align-items: center; gap: 1rem; padding: .8rem 1.1rem; border-radius: 3px; background: linear-gradient(#262626, #141414); box-shadow: inset 0 1px 0 #3a3a3a; }
+    .led { width: 12px; height: 12px; border-radius: 50%; background: #3a120c; box-shadow: inset 0 1px 2px #000; }
+    .led.is-on { background: #ff5a3c; box-shadow: 0 0 10px 2px rgba(255, 90, 60, .7); }
+    .deck__label { font: 500 .62rem/1 'Montserrat', sans-serif; letter-spacing: .2em; color: #9a9a9a; }
+    .morse { display: flex; gap: .9rem; font: 400 1.6rem/1 var(--mono); color: #4b5a4f; letter-spacing: .1em; }
+    .morse span { display: flex; gap: .2rem; align-items: center; }
+    .morse i { font-style: normal; transition: color .05s; }
+    .morse i.is-on { color: var(--green-hi); }
+    .morse em { font-style: normal; font-size: 1rem; color: #6c7d70; margin-left: .25rem; }
+
+    /* Counter */
+    .lcd { padding: .5rem 1rem .35rem; border-radius: 3px; background: #08130a; box-shadow: inset 0 0 0 1px #12361a; font: 400 clamp(2.6rem, 11vw, 3.4rem)/1 var(--mono); color: var(--green); text-shadow: 0 0 10px rgba(94, 224, 74, .55); letter-spacing: .06em; }
+    .lcd small { display: block; font-size: .3em; letter-spacing: .3em; color: #3f7a43; text-shadow: none; }
+
+    /* On screen display */
+    .crt { position: relative; width: 100%; max-width: 360px; aspect-ratio: 4 / 3; overflow: hidden; border-radius: 14px / 10px; background: #1838c8; box-shadow: inset 0 0 40px rgba(0, 0, 0, .55), 0 0 0 6px #1a1a1a; font-family: var(--mono); color: #fff; text-shadow: 2px 2px 0 rgba(0, 0, 0, .45); }
+    .crt::after { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(transparent 0 2px, rgba(0, 0, 0, .14) 2px 3px); pointer-events: none; }
+    .crt__osd { position: absolute; left: 8%; top: 8%; font-size: clamp(1.2rem, 5vw, 1.6rem); }
+    .crt__sub { position: absolute; left: 50%; bottom: 9%; transform: translateX(-50%); max-width: 86%; padding: .05rem .5rem; background: rgba(0, 0, 0, .8); font-size: clamp(1.05rem, 4.4vw, 1.35rem); white-space: nowrap; text-shadow: none; }
+    .crt__sub:empty { display: none; }
+    .crt__noise { position: absolute; inset: 0; opacity: 0; background: repeating-linear-gradient(0deg, rgba(255, 255, 255, .0) 0 6px, rgba(255, 255, 255, .55) 6px 8px, rgba(255, 255, 255, 0) 8px 22px); transition: opacity .2s; }
+    .crt--tracking .crt__noise { opacity: 1; animation: roll 1.1s linear infinite; }
+    .crt--tracking { background: #10247a; }
+    @keyframes roll { to { background-position: 0 44px; } }
+
+    /* Warning card */
+    .warn { width: 100%; max-width: 360px; padding: 1rem 1.1rem; border: 2px solid #c9c9c9; background: #000; text-align: center; font-family: 'Oswald', sans-serif; }
+    .warn strong { display: block; margin-bottom: .5rem; font: 500 1.15rem/1.1 'Oswald', sans-serif; letter-spacing: .14em; text-transform: uppercase; color: #ff4d3a; }
+    .warn span { display: block; font-size: .72rem; line-height: 1.5; letter-spacing: .06em; text-transform: uppercase; color: #ddd; }
+
+    /* Codes */
+    .codes { display: grid; gap: .6rem; width: 100%; max-width: 360px; text-align: center; }
+    .codes input { width: 100%; min-height: 48px; padding: .4rem .8rem; border: 1px solid #12361a; border-radius: 3px; background: #08130a; color: var(--green); font: 400 1.7rem/1 var(--mono); letter-spacing: .3em; text-align: center; text-transform: uppercase; }
+    .codes input:focus { outline: 2px solid var(--green); outline-offset: 2px; }
+    .codes__out { min-height: 2.6em; margin: 0; font: 400 1.25rem/1.3 var(--mono); color: var(--green-hi); }
+    .codes__hint { font-size: .75rem; color: #6c7d70; }
+
+    /* Night scene */
+    .night { width: 100%; height: auto; display: block; border-radius: 3px; }
+    .owl-eyes { transform-box: fill-box; transform-origin: center; animation: blink 5.3s infinite; }
+    .crow-eye { animation: glint 4s infinite; }
+    @keyframes blink { 0%, 92%, 100% { transform: scaleY(1); } 95% { transform: scaleY(.1); } }
+    @keyframes glint { 0%, 60%, 100% { opacity: 1; } 64%, 70% { opacity: .1; } }
+    .demo--scene { padding: 0; background: none; }
+    .chips { display: flex; flex-wrap: wrap; gap: .4rem; justify-content: center; margin: 0; padding: 0; list-style: none; }
+    .chips li { padding: .25rem .6rem; border-radius: 99px; background: #13241a; color: var(--green-hi); font-size: .74rem; }
+
+    /* Rating */
+    .rating { display: grid; grid-template-columns: auto 1fr; width: 100%; max-width: 360px; border: 3px solid #f3eedf; background: #000; color: #f3eedf; }
+    .rating__big { display: grid; place-items: center; padding: .4rem .7rem; border-right: 3px solid #f3eedf; font: 900 2.6rem/1 'Cinzel', serif; }
+    .rating__body { padding: .55rem .7rem; font-size: .72rem; line-height: 1.45; }
+    .rating__body strong { display: block; margin-bottom: .2rem; font: 500 .95rem/1 'Oswald', sans-serif; letter-spacing: .2em; }
+    .rating__foot { grid-column: 1 / -1; padding: .35rem .7rem; border-top: 3px solid #f3eedf; font: 500 .62rem/1.3 'Oswald', sans-serif; letter-spacing: .12em; text-transform: uppercase; }
+
+    /* Credits */
+    .roll { width: 100%; max-width: 380px; font: 400 .8rem/1.6 'Montserrat', sans-serif; color: #dfe7df; text-align: center; }
+    .roll dt { font: 500 .66rem/1 'Oswald', sans-serif; letter-spacing: .3em; text-transform: uppercase; color: #7f9184; margin-top: .9rem; }
+    .roll dt:first-child { margin-top: 0; }
+    .roll dd { margin: .3rem 0 0; }
+
+    /* Review */
+    .quote { margin: 0; max-width: 320px; text-align: center; }
+    .quote blockquote { margin: 0; font: 700 1.8rem/1.1 'Cinzel', serif; color: #f3eedf; }
+    .quote figcaption { margin-top: .6rem; font-size: .76rem; color: var(--muted); }
+    .quote figcaption i { color: var(--ink); }
+    .stars { margin-top: .3rem; color: var(--amber); letter-spacing: .2em; }
+
+    /* Laminate */
+    .laminate { position: relative; width: 210px; padding: 1.6rem 1rem 1rem; border-radius: 10px; background: linear-gradient(160deg, #f6f6f2, #d9ddd6); color: #0c120e; text-align: center; box-shadow: 0 10px 30px -10px rgba(0, 0, 0, .9), inset 0 0 0 1px rgba(255, 255, 255, .6); transform: rotate(-3deg); }
+    .laminate::before { content: ""; position: absolute; top: .55rem; left: 50%; width: 40px; height: 8px; margin-left: -20px; border-radius: 4px; background: #050906; }
+    .laminate__band { margin: 0 -1rem .7rem; padding: .35rem 0; background: var(--green); font: 500 .9rem/1 'Oswald', sans-serif; letter-spacing: .35em; }
+    .laminate__name { font: 700 1.05rem/1.2 'Montserrat', sans-serif; }
+    .laminate__role { margin-top: .2rem; font: 700 1rem/1.2 'Cinzel', serif; color: #1a5b25; }
+    .laminate__fine { margin-top: .8rem; font: 500 .58rem/1.3 'Oswald', sans-serif; letter-spacing: .18em; text-transform: uppercase; color: #4c584f; }
+
+    /* End card */
+    .endcard { display: grid; place-items: center; width: 100%; max-width: 360px; aspect-ratio: 16 / 9; background: #000; }
+    .endcard p { margin: 0; color: #e8e8e8; font: 700 1.1rem/1 'Cinzel', serif; letter-spacing: .12em; opacity: 0; transition: opacity 2.4s ease; }
+    .endcard.is-shown p { opacity: 1; }
+
+    /* 404 preview */
+    .peek { position: relative; width: 308px; max-width: 100%; height: 182px; overflow: hidden; border-radius: 3px; background: #030604; }
+    .peek iframe { position: absolute; left: 0; top: 0; width: 880px; height: 520px; border: 0; transform: scale(.35); transform-origin: 0 0; pointer-events: none; }
+
+    .egg--rules { border-style: dashed; border-color: #4a2a2a; }
+    .egg--rules ul { margin: 0; padding-left: 1.1rem; color: var(--muted); font-size: .85rem; line-height: 1.6; }
+    .egg--rules li + li { margin-top: .6rem; }
+    .back { display: block; width: max-content; margin: 2.6rem auto 0; padding: .9rem .4rem; color: var(--green); font-size: .8rem; letter-spacing: .2em; text-transform: uppercase; text-decoration: none; text-align: center; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .owl-eyes, .crow-eye, .crt--tracking .crt__noise { animation: none; }
+      .endcard p { transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <p class="sign">Deep cuts</p>
+    <h1>Easter egg lab</h1>
+    <p class="lede">Every Rush nod we've considered, in one place, so the team can try them before anything ships. Each card says what the reference is, so every egg can be checked. Pick a handful; a few feel like a wink, too many become a quiz.</p>
+    <ul class="legend">
+      <li><span class="tag tag--live">Live in …</span> already working in the concepts listed</li>
+      <li><span class="tag tag--mock">Mock</span> a sketch for review</li>
+      <li><span class="tag tag--ask">Needs sign-off</span> ask the band's team first</li>
+    </ul>
+  </header>
+
+  <main class="grid">
+
+    <article class="egg">
+      <div class="egg__tags"><span class="tag tag--live">Live in 1, 1B, 1C</span></div>
+      <h2>The power light blinks YYZ</h2>
+      <div class="demo">
+        <div class="deck"><span class="led" id="yyz-led"></span><span class="deck__label">POWER</span></div>
+        <div class="morse" id="yyz-morse" aria-label="Y Y Z in Morse code">
+          <span><i>-</i><i>.</i><i>-</i><i>-</i><em>Y</em></span>
+          <span><i>-</i><i>.</i><i>-</i><i>-</i><em>Y</em></span>
+          <span><i>-</i><i>-</i><i>.</i><i>.</i><em>Z</em></span>
+        </div>
+        <div class="btns"><button class="btn" type="button" id="yyz-go">Transmit with sound</button></div>
+      </div>
+      <p><b>The reference:</b> YYZ is the airport code for Toronto Pearson. The song "YYZ" from <i>Moving Pictures</i> (1981) opens with that rhythm in Morse code.</p>
+      <p><b>Where:</b> the deck's power light loops it quietly. Nobody has to notice; the ones who do will grin.</p>
+    </article>
+
+    <article class="egg">
+      <div class="egg__tags"><span class="tag tag--live">Live in 1, 1B, 1C</span></div>
+      <h2>The tape counter stops at 21:12</h2>
+      <div class="demo">
+        <div class="lcd" id="lcd" aria-live="polite"><small>COUNTER</small><span id="lcd-time">0:00:00</span></div>
+        <div class="btns">
+          <button class="btn" type="button" id="lcd-play">Play to the end</button>
+          <button class="btn" type="button" id="lcd-rew">Rewind</button>
+        </div>
+      </div>
+      <p><b>The reference:</b> <i>2112</i> (1976) is the album that saved their career. On a VCR it's just a number, so only fans will see it.</p>
+      <p><b>Where:</b> the LCD on the deck. It rolls to 0:21:12 on boot, stop and fast forward.</p>
+    </article>
+
+    <article class="egg">
+      <div class="egg__tags"><span class="tag tag--live">Live in 1, 1B, 1C</span></div>
+      <h2>The deck talks in song titles</h2>
+      <div class="demo">
+        <div class="crt" id="crt">
+          <div class="crt__noise"></div>
+          <div class="crt__osd" id="osd">&#9654; PLAY</div>
+          <div class="crt__sub" id="sub"></div>
+        </div>
+        <div class="btns">
+          <button class="btn" type="button" data-osd="pause">Pause</button>
+          <button class="btn" type="button" data-osd="ff">FF</button>
+          <button class="btn" type="button" data-osd="track">Tracking</button>
+          <button class="btn" type="button" data-osd="cc">CC</button>
+        </div>
+      </div>
+      <p><b>The references:</b> Pause says "Time stand still" (<i>Hold Your Fire</i>, 1987). FF says "Fly by night" (<i>Fly by Night</i>, 1975). Bad tracking shows "Down the tubes tour," the band's own nickname for the <i>Caress of Steel</i> tour, when the album sold poorly and they played small rooms.</p>
+      <p><b>CC:</b> cycles English, Canadian, Troll and "Blah blah blah," after Alex's 2013 Rock and Roll Hall of Fame speech, which he delivered as nothing but "blah blah blah." Rewind stays "Rewind," because "Be kind, rewind" carries the concept.</p>
+    </article>
+
+    <article class="egg">
+      <div class="egg__tags"><span class="tag tag--live">Live in 1C</span></div>
+      <h2>Distant early warning</h2>
+      <div class="demo">
+        <div class="warn">
+          <strong>Distant early warning</strong>
+          <span>This videocassette is licensed for private home viewing by Rush fans only. Unauthorized exits, stage left, house left or otherwise, are strictly prohibited.</span>
+        </div>
+      </div>
+      <p><b>The reference:</b> a song from <i>Grace Under Pressure</i> (1984), the same year as the concept 1 basement. The title comes from the DEW Line, a chain of Cold War radar stations across the Canadian Arctic. A Canadian reference, used as a warning screen.</p>
+    </article>
+
+    <article class="egg">
+      <div class="egg__tags"><span class="tag tag--live">Live in 1, 1B, 1C</span></div>
+      <h2>Secret codes</h2>
+      <div class="demo">
+        <div class="codes">
+          <label for="code" class="codes__hint">Type a code. On a keyboard, typing anywhere on the page works too.</label>
+          <input id="code" type="text" inputmode="text" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="6" placeholder="????">
+          <p class="codes__out" id="code-out" aria-live="polite"></p>
+        </div>
+      </div>
+      <p><b>Try:</b> <code>YYZ</code> sends the Morse beeps through the power light. <code>2112</code> rolls the counter and puts up "Overture. The temples have been notified." Overture is the first section of the <i>2112</i> suite, and the Temples of Syrinx are the priests who run that story's world.</p>
+      <p><b>Rule:</b> a generated tone only, never the song's audio.</p>
+    </article>
+
+    <article class="egg">
+      <div class="egg__tags"><span class="tag tag--live">Specs line in 1C</span><span class="tag tag--mock">Badge is a mock</span></div>
+      <h2>Rated R40</h2>
+      <div class="demo">
+        <div class="rating">
+          <div class="rating__big">R40</div>
+          <div class="rating__body"><strong>RESTRICTED</strong>Contains odd time signatures, a 20-minute suite and appliances used as amplifiers.</div>
+          <div class="rating__foot">Under 40 must be accompanied by a parent with the vinyl</div>
+        </div>
+      </div>
+      <p><b>The reference:</b> R30 and R40 were the 30th and 40th anniversary tours. "R40" reads like a movie rating, so it slots into a rating box without explanation. The 20-minute suite is "2112"; the appliances are in the backline card.</p>
+      <p><b>Where:</b> the back of the concept 2 box or a flyer. 1C already says "Rated R40" in the specs line.</p>
+    </article>
+    <article class="egg egg--wide">
+      <div class="egg__tags"><span class="tag tag--mock">Mock</span><span class="tag tag--mock">For 1B</span></div>
+      <h2>Three more things in the 1B night scene</h2>
+      <div class="demo demo--scene">
+        <svg class="night" viewBox="0 0 600 270" role="img" aria-label="Night street: an owl between two crows on a wire, a dalmatian sniffing a fire hydrant under a street lamp, and a guitar case stenciled Property of the Temples of Syrinx">
+          <defs>
+            <linearGradient id="n-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1b0c33"/><stop offset="1" stop-color="#3a1d5c"/></linearGradient>
+            <linearGradient id="n-pool" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f2ffd0" stop-opacity=".45"/><stop offset="1" stop-color="#5ee04a" stop-opacity="0"/></linearGradient>
+            <symbol id="n-crow" viewBox="0 0 120 90"><path d="M4 31l17-5c3-9 13-13 22-9 6 3 9 8 13 13 14 7 33 14 48 27 3 3 5 6 9 10-11-3-25-7-37-7-3 7-9 12-19 13l2 13h5l-1 2H52l2-15c-2 0-4 1-6 0l1 15h4l-1 2h-9l1-17c-11-4-17-13-19-24-2-6-5-9-11-10z"/></symbol>
+          </defs>
+          <rect width="600" height="270" fill="url(#n-sky)"/>
+          <circle cx="520" cy="46" r="26" fill="#e9f6cf"/>
+          <rect y="240" width="600" height="30" fill="#06020b"/>
+
+          <path d="M0 70Q300 110 600 70" fill="none" stroke="#050208" stroke-width="2"/>
+          <g fill="#050208">
+            <use href="#n-crow" x="160" y="37" width="70" height="52"/>
+            <use href="#n-crow" x="440" y="32" width="64" height="48" transform="translate(944 0) scale(-1 1)"/>
+            <circle class="crow-eye" cx="173" cy="51" r="2" fill="#5ee04a"/>
+          </g>
+          <!-- owl -->
+          <g>
+            <path d="M311 46l4-14 8 10M349 46l-4-14-8 10" fill="#2a1a10"/>
+            <ellipse cx="330" cy="64" rx="20" ry="27" fill="#2a1a10"/>
+            <ellipse cx="330" cy="72" rx="12" ry="16" fill="#3d2818"/>
+            <g class="owl-eyes">
+              <circle cx="322" cy="52" r="7" fill="#f2d36b"/><circle cx="338" cy="52" r="7" fill="#f2d36b"/>
+              <circle cx="322" cy="52" r="3" fill="#050208"/><circle cx="338" cy="52" r="3" fill="#050208"/>
+            </g>
+            <path d="M327 58l3 5 3-5z" fill="#c98a2b"/>
+            <path d="M323 90h4M333 90h4" stroke="#c98a2b" stroke-width="2"/>
+          </g>
+
+          <!-- lamp -->
+          <path d="M84 118L20 240H150z" fill="url(#n-pool)"/>
+          <rect x="80" y="108" width="6" height="132" fill="#050208"/>
+          <path d="M70 104h26l-5 10H75z" fill="#050208"/>
+          <circle cx="83" cy="116" r="4" fill="#efffd6"/>
+
+          <!-- hydrant -->
+          <g fill="#c8322b">
+            <rect x="118" y="206" width="20" height="34" rx="2"/>
+            <path d="M115 208h26v-5a13 9 0 0 0-26 0z"/>
+            <rect x="111" y="216" width="8" height="8" rx="1.5"/><rect x="137" y="216" width="8" height="8" rx="1.5"/>
+            <rect x="114" y="236" width="28" height="5" rx="1"/>
+          </g>
+          <!-- dalmatian, nose to the hydrant -->
+          <g fill="#f2f2ee">
+            <path d="M176 212q2 4 0 8l-8 3q-8 2-14 0l-4-3q-1-4 4-7l10-2z"/>
+            <ellipse cx="200" cy="212" rx="30" ry="12"/>
+            <rect x="178" y="216" width="6" height="24" rx="2"/><rect x="188" y="218" width="6" height="22" rx="2"/>
+            <rect x="208" y="218" width="6" height="22" rx="2"/><rect x="218" y="216" width="6" height="24" rx="2"/>
+            <path d="M228 206q10-4 14-16" stroke="#f2f2ee" stroke-width="4" fill="none" stroke-linecap="round"/>
+          </g>
+          <g fill="#0b0b0b">
+            <ellipse cx="170" cy="214" rx="4" ry="7" transform="rotate(-25 170 214)"/>
+            <circle cx="150" cy="220" r="2.5"/>
+            <circle cx="192" cy="206" r="3"/><circle cx="206" cy="214" r="2.4"/><circle cx="218" cy="205" r="2.6"/>
+            <circle cx="184" cy="216" r="2"/><circle cx="212" cy="221" r="2"/><circle cx="222" cy="232" r="1.8"/><circle cx="181" cy="232" r="1.8"/>
+          </g>
+
+          <!-- dropped guitar case -->
+          <g transform="rotate(-4 470 222)">
+            <path d="M370 210h110q10-12 30-12q38 0 52 14v20q-14 14-52 14q-20 0-30-12H370q-6 0-6-6v-12q0-6 6-6z" fill="#2b1f15" stroke="#4a3624" stroke-width="2"/>
+            <text x="452" y="222" text-anchor="middle" font-family="Oswald, sans-serif" font-size="10" letter-spacing="1.2" fill="#d9cfae" opacity=".85">PROPERTY OF THE</text>
+            <text x="452" y="234" text-anchor="middle" font-family="Oswald, sans-serif" font-size="10" letter-spacing="1.2" fill="#d9cfae" opacity=".85">TEMPLES OF SYRINX</text>
+          </g>
+        </svg>
+        <ul class="chips"><li>An owl on the wire</li><li>A dalmatian at the hydrant</li><li>A stenciled guitar case</li></ul>
+      </div>
+      <p><b>The owl:</b> <i>Fly by Night</i> (1975) has an owl on the cover, and the scene is already at night. Its eyes blink out of step with the crows'.</p>
+      <p><b>The dalmatian:</b> a dog sniffing a fire hydrant is the cover of <i>Signals</i> (1982). In the scene it's just a dog on a street, and fans will recognize it.</p>
+      <p><b>The guitar case:</b> in the <i>2112</i> story, a man finds a forgotten guitar and the Priests of the Temples of Syrinx smash it, because they control all music. In 1B the case gets dropped and something gets out, a fitting comeback for that guitar.</p>
+    </article>
+
+
+    <article class="egg">
+      <div class="egg__tags"><span class="tag tag--live">Live in 1, 1B, 1C</span></div>
+      <h2>The backline credit</h2>
+      <div class="demo">
+        <dl class="roll">
+          <dt>Backline</dt>
+          <dd>Two dryers, a vending machine, a rotisserie and a sausage maker</dd>
+          <dt>Tape stock</dt>
+          <dd>T-120, recorded at SP</dd>
+        </dl>
+      </div>
+      <p><b>The reference:</b> Geddy swapped his amp stacks for stage props: dryers on <i>Vapor Trails</i> (2002), two dryers and a vending machine on <i>R30</i> (2004), rotisserie ovens on <i>Snakes &amp; Arrows</i> (2007 to 2008) and a sausage maker on <i>Time Machine</i> (2010 to 2011). The crew who carried them will catch this first.</p>
+    </article>
+
+    <article class="egg">
+      <div class="egg__tags"><span class="tag tag--mock">Mock</span></div>
+      <h2>A review from the Snow Dog</h2>
+      <div class="demo">
+        <figure class="quote">
+          <blockquote>"Two paws up."</blockquote>
+          <div class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <figcaption>The Snow Dog, <i>Tobes of Hades Gazette</i></figcaption>
+        </figure>
+      </div>
+      <p><b>The reference:</b> "By-Tor and the Snow Dog" is the epic on <i>Fly by Night</i> (1975), and "At the Tobes of Hades" is the name of its first section. It sits next to the box's existing fake pull quotes.</p>
+    </article>
+
+    <article class="egg">
+      <div class="egg__tags"><span class="tag tag--mock">Mock</span><span class="tag tag--ask">Needs sign-off</span></div>
+      <h2>Anika's laminate</h2>
+      <div class="demo">
+        <div class="laminate">
+          <div class="laminate__band">ALL ACCESS</div>
+          <div class="laminate__name">Anika Nilles</div>
+          <div class="laminate__role">Die Schlagzeugerin</div>
+          <div class="laminate__fine">Xanarena &middot; Climate Pledge Arena</div>
+        </div>
+      </div>
+      <p><b>The reference:</b> Neil's drum solos were named "The Drummer" in other languages: "O Baterista" on <i>Rush in Rio</i>, "Der Trommler" on <i>R30</i>, "De Slagwerker" on <i>Snakes &amp; Arrows Live</i>. Anika is German, and <i>Schlagzeugerin</i> is the feminine form. It welcomes her by carrying on his tradition.</p>
+      <p><b>Ask first:</b> it ties her to Neil's legacy, so the band's team should say yes.</p>
+    </article>
+
+    <article class="egg">
+      <div class="egg__tags"><span class="tag tag--mock">Mock</span><span class="tag tag--ask">Needs sign-off</span></div>
+      <h2>Thanks, Professor</h2>
+      <div class="demo">
+        <div class="endcard is-shown" id="endcard"><p>Thanks, Professor.</p></div>
+        <div class="btns"><button class="btn" type="button" id="endcard-go">Play end card</button></div>
+      </div>
+      <p><b>The reference:</b> "The Professor" was Neil Peart's nickname. One quiet line after the credits, with nothing else on screen.</p>
+      <p><b>Ask first:</b> keep it light and celebratory, and run it by the band's team before it ships.</p>
+    </article>
+
+    <article class="egg">
+      <div class="egg__tags"><span class="tag tag--mock">Mock</span></div>
+      <h2>The Moving pictures 404</h2>
+      <div class="demo">
+        <div class="peek"><iframe src="404.html" title="404 page preview" tabindex="-1"></iframe></div>
+        <div class="btns"><a class="btn" href="404.html">Open the 404</a></div>
+      </div>
+      <p><b>The reference:</b> the <i>Moving Pictures</i> (1981) cover is a triple pun: movers carrying paintings, onlookers who are moved, and an album named for the movies. A missing page is something that got moved.</p>
+    </article>
+
+    <article class="egg egg--rules">
+      <div class="egg__tags"><span class="tag tag--ask">Ground rules</span></div>
+      <h2>Guardrails for every egg</h2>
+      <ul>
+        <li>No lyric quotes and no official artwork, including the Starman and the real album covers. Song titles, poses and wordplay are fine.</li>
+        <li>Generated tones only. No song audio.</li>
+        <li>Anything touching Neil goes to the band's team first.</li>
+      </ul>
+    </article>
+  </main>
+
+  <a class="back" href="../concepts.html">&larr; Website concepts</a>
+
+  <script>
+    (function () {
+      'use strict';
+      var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var audioCtx = null;
+
+      function tone(ms) {
+        try {
+          audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+          var o = audioCtx.createOscillator();
+          var g = audioCtx.createGain();
+          var t = audioCtx.currentTime;
+          o.frequency.value = 784;
+          g.gain.setValueAtTime(0, t);
+          g.gain.linearRampToValueAtTime(.08, t + .01);
+          g.gain.setValueAtTime(.08, t + ms / 1000 - .01);
+          g.gain.linearRampToValueAtTime(0, t + ms / 1000);
+          o.connect(g).connect(audioCtx.destination);
+          o.start(t);
+          o.stop(t + ms / 1000 + .02);
+        } catch (err) { /* no audio, no problem */ }
+      }
+
+      /* YYZ */
+      var led = document.getElementById('yyz-led');
+      var marks = Array.prototype.slice.call(document.querySelectorAll('#yyz-morse i'));
+      var MORSE = '-.-- -.-- --..';
+      var timers = [];
+      var sending = false;
+
+      function clearMorse() {
+        timers.forEach(clearTimeout);
+        timers = [];
+        led.classList.remove('is-on');
+        marks.forEach(function (m) { m.classList.remove('is-on'); });
+      }
+
+      function sendMorse(unit, withSound, done) {
+        clearMorse();
+        var t = 0;
+        var i = 0;
+        MORSE.split(' ').forEach(function (letter) {
+          letter.split('').forEach(function (sym) {
+            var len = sym === '-' ? unit * 3 : unit;
+            var mark = marks[i++];
+            timers.push(setTimeout(function () {
+              led.classList.add('is-on');
+              mark.classList.add('is-on');
+              if (withSound) tone(len);
+            }, t));
+            timers.push(setTimeout(function () {
+              led.classList.remove('is-on');
+              mark.classList.remove('is-on');
+            }, t + len));
+            t += len + unit;
+          });
+          t += unit * 2;
+        });
+        timers.push(setTimeout(done || function () {}, t));
+      }
+
+      function ambient() {
+        if (reduced || sending) return;
+        sendMorse(150, false, function () { timers.push(setTimeout(ambient, 4200)); });
+      }
+
+      function transmit() {
+        sending = true;
+        sendMorse(110, true, function () { sending = false; timers.push(setTimeout(ambient, 2500)); });
+      }
+      document.getElementById('yyz-go').addEventListener('click', transmit);
+      ambient();
+
+      /* Counter */
+      var lcdTime = document.getElementById('lcd-time');
+      var shown = 0;
+      var raf = 0;
+      function fmt(s) {
+        s = Math.round(s);
+        var h = Math.floor(s / 3600);
+        var m = Math.floor(s / 60) % 60;
+        var sec = s % 60;
+        return h + ':' + (m < 10 ? '0' : '') + m + ':' + (sec < 10 ? '0' : '') + sec;
+      }
+      function roll(target, ms) {
+        cancelAnimationFrame(raf);
+        if (reduced) { shown = target; lcdTime.textContent = fmt(target); return; }
+        var from = shown;
+        var start = performance.now();
+        (function step(now) {
+          var p = Math.min(1, (now - start) / ms);
+          shown = from + (target - from) * (1 - Math.pow(1 - p, 3));
+          lcdTime.textContent = fmt(shown);
+          if (p < 1) raf = requestAnimationFrame(step);
+        })(start);
+      }
+      document.getElementById('lcd-play').addEventListener('click', function () { roll(1272, 1800); });
+      document.getElementById('lcd-rew').addEventListener('click', function () { roll(0, 900); });
+
+      /* On screen display */
+      var crt = document.getElementById('crt');
+      var osd = document.getElementById('osd');
+      var sub = document.getElementById('sub');
+      var CC = ['', 'English', 'Canadian', 'Troll', '[ Blah blah blah ]'];
+      var cc = 0;
+      var osdBtns = Array.prototype.slice.call(document.querySelectorAll('[data-osd]'));
+      osdBtns.forEach(function (b) {
+        b.addEventListener('click', function () {
+          var k = b.getAttribute('data-osd');
+          if (k === 'cc') {
+            cc = (cc + 1) % CC.length;
+            sub.textContent = cc === 0 ? '' : (cc < 4 ? '[ CC: ' + CC[cc] + ' ]' : CC[cc]);
+            b.setAttribute('aria-pressed', cc ? 'true' : 'false');
+            return;
+          }
+          var on = b.getAttribute('aria-pressed') !== 'true';
+          osdBtns.forEach(function (o) { if (o.getAttribute('data-osd') !== 'cc') o.setAttribute('aria-pressed', 'false'); });
+          crt.classList.remove('crt--tracking');
+          if (cc === 0 || sub.textContent === 'Down the tubes tour.') sub.textContent = cc ? CC[cc] : '';
+          if (!on) { osd.innerHTML = '&#9654; PLAY'; return; }
+          b.setAttribute('aria-pressed', 'true');
+          if (k === 'pause') osd.innerHTML = '&#10074;&#10074; Time stand still';
+          if (k === 'ff') osd.innerHTML = '&#9654;&#9654; Fly by night';
+          if (k === 'track') {
+            osd.innerHTML = 'TRACKING +3';
+            crt.classList.add('crt--tracking');
+            sub.textContent = 'Down the tubes tour.';
+          }
+        });
+      });
+
+      /* Codes */
+      var out = document.getElementById('code-out');
+      var input = document.getElementById('code');
+      function runCode(code) {
+        if (code === 'YYZ') {
+          out.textContent = 'Transmitting: -.-- -.-- --..';
+          transmit();
+          return true;
+        }
+        if (code === '2112') {
+          out.textContent = 'Overture. The temples have been notified.';
+          roll(1272, 1800);
+          return true;
+        }
+        return false;
+      }
+      input.addEventListener('input', function () {
+        var v = input.value.toUpperCase().replace(/\s/g, '');
+        if (/YYZ$/.test(v)) { runCode('YYZ'); input.value = ''; }
+        else if (/2112$/.test(v)) { runCode('2112'); input.value = ''; }
+      });
+      var buffer = '';
+      document.addEventListener('keydown', function (e) {
+        if (e.target === input || e.ctrlKey || e.metaKey || e.altKey || e.key.length !== 1) return;
+        buffer = (buffer + e.key.toUpperCase()).slice(-4);
+        if (/YYZ$/.test(buffer)) { runCode('YYZ'); buffer = ''; }
+        else if (buffer === '2112') { runCode('2112'); buffer = ''; }
+      });
+
+      /* End card */
+      var endcard = document.getElementById('endcard');
+      document.getElementById('endcard-go').addEventListener('click', function () {
+        endcard.classList.remove('is-shown');
+        void endcard.offsetWidth;
+        setTimeout(function () { endcard.classList.add('is-shown'); }, 600);
+      });
+    })();
+  </script>
+</body>
+</html>

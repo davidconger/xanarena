@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page moved | Xanarena</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="../shared/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Montserrat:wght@500;600;700&family=Oswald:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; }
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 2rem 1rem;
+      overflow-x: hidden;
+      font-family: 'Montserrat', sans-serif;
+      color: #eef3ee;
+      background: radial-gradient(ellipse 80% 60% at 50% 30%, #12301a, #030604 70%);
+      text-align: center;
+    }
+    .code { margin: 0; font: 400 .8rem/1 'Oswald', sans-serif; letter-spacing: .5em; text-transform: uppercase; color: #5ee04a; }
+    .scene { width: min(100%, 880px); margin: 1rem 0 .5rem; overflow: hidden; }
+    .scene svg { display: block; width: 100%; height: auto; }
+    h1 { margin: 0; font: 900 clamp(1.8rem, 5vw, 3.2rem)/1.05 'Cinzel', serif; text-transform: uppercase; color: #8ef07a; }
+    .lede { margin: .9rem auto 1.8rem; max-width: 46ch; color: #b5c4b8; line-height: 1.6; }
+    .btn { display: inline-block; padding: .85rem 1.6rem; border: 1px solid #5ee04a; border-radius: 3px; color: #041006; background: #5ee04a; font: 700 .8rem/1 'Montserrat', sans-serif; letter-spacing: .2em; text-transform: uppercase; text-decoration: none; }
+    .btn:hover, .btn:focus-visible { background: #8ef07a; outline: none; }
+
+    .crew { animation: carry 16s linear infinite; }
+    .bob { animation: bob .6s ease-in-out infinite alternate; }
+    .leg { transform-box: fill-box; transform-origin: 50% 0; animation: step .6s ease-in-out infinite alternate; }
+    .leg--b { animation-direction: alternate-reverse; }
+    .tear { animation: tear 2.4s ease-in infinite; }
+    @keyframes carry { from { transform: translateX(-480px); } to { transform: translateX(900px); } }
+    @keyframes bob { to { transform: translateY(-3px); } }
+    @keyframes step { from { transform: rotate(16deg); } to { transform: rotate(-16deg); } }
+    @keyframes tear { 0%, 30% { transform: translateY(0); opacity: 0; } 35% { opacity: 1; } 90% { transform: translateY(46px); opacity: 1; } 100% { transform: translateY(50px); opacity: 0; } }
+    @media (prefers-reduced-motion: reduce) {
+      .crew { animation: none; transform: translateX(130px); }
+      .bob, .leg, .tear { animation: none; }
+    }
+  </style>
+</head>
+<body>
+  <p class="code">Error 404 &middot; Moving pictures</p>
+
+  <div class="scene" aria-hidden="true">
+    <svg viewBox="0 0 880 330">
+      <g fill="none" stroke="#1d3a24" stroke-width="2">
+        <path d="M60 300 V110 L440 40 L820 110 V300"/>
+        <path d="M100 300 V130 M180 300 V118 M260 300 V104 M340 300 V92 M540 300 V92 M620 300 V104 M700 300 V118 M780 300 V130"/>
+        <path d="M60 110 H820"/>
+      </g>
+      <path d="M0 300 H880" stroke="#2d4a33" stroke-width="3"/>
+
+      <!-- bystander, very moved -->
+      <g transform="translate(800 300)">
+        <rect x="-11" y="-90" width="10" height="90" rx="4" fill="#3a3f3c"/>
+        <rect x="2" y="-90" width="10" height="90" rx="4" fill="#3a3f3c"/>
+        <rect x="-20" y="-170" width="40" height="88" rx="11" fill="#55605a"/>
+        <circle cy="-186" r="15" fill="#d8b08c"/>
+        <path d="M-7 -188 h5 M3 -188 h5" stroke="#222" stroke-width="2"/>
+        <path d="M-5 -177 q5 -4 10 0" stroke="#222" stroke-width="2" fill="none"/>
+        <path class="tear" d="M-5 -184 q-3 5 0 7 q3 -2 0 -7z" fill="#8fd3ff"/>
+      </g>
+
+      <g class="crew">
+        <g class="bob">
+          <rect x="120" y="70" width="250" height="160" fill="#b8913c"/>
+          <rect x="132" y="82" width="226" height="136" fill="#d9b25a"/>
+          <rect x="142" y="92" width="206" height="116" fill="#06110a"/>
+          <text x="245" y="168" text-anchor="middle" font-family="Cinzel, serif" font-weight="900" font-size="58" fill="#5ee04a">404</text>
+          <text x="245" y="194" text-anchor="middle" font-family="Oswald, sans-serif" font-size="12" letter-spacing="4" fill="#9fb3a4">XANARENA</text>
+          <path d="M96 140 L124 120 M394 140 L366 120" stroke="#2d6b3a" stroke-width="12" stroke-linecap="round"/>
+        </g>
+        <g transform="translate(96 300)">
+          <rect class="leg" x="-15" y="-92" width="13" height="92" rx="5" fill="#16331d"/>
+          <rect class="leg leg--b" x="2" y="-92" width="13" height="92" rx="5" fill="#1b3f24"/>
+          <rect x="-24" y="-176" width="48" height="92" rx="12" fill="#2d6b3a"/>
+          <circle cy="-194" r="17" fill="#d8b08c"/>
+          <path d="M-18 -200 q18 -22 36 0 z M14 -201 h14 v5 h-14 z" fill="#16331d"/>
+        </g>
+        <g transform="translate(394 300)">
+          <rect class="leg" x="-15" y="-92" width="13" height="92" rx="5" fill="#16331d"/>
+          <rect class="leg leg--b" x="2" y="-92" width="13" height="92" rx="5" fill="#1b3f24"/>
+          <rect x="-24" y="-176" width="48" height="92" rx="12" fill="#2d6b3a"/>
+          <circle cy="-194" r="17" fill="#d8b08c"/>
+          <path d="M-18 -200 q18 -22 36 0 z M14 -201 h14 v5 h-14 z" fill="#16331d"/>
+        </g>
+      </g>
+    </svg>
+  </div>
+
+  <h1>This page has been moved</h1>
+  <p class="lede">The movers are carrying it somewhere better. Some of the onlookers were very moved.</p>
+  <a class="btn" href="../index.html">Back to the tape</a>
+</body>
+</html>

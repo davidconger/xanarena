@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Xanarena: Exit Stage...House Left</title>
+  <meta name="description" content="Rush fanatics Dreamer and Misfit venture into the enigmatic halls of Xanarena in search of the greatest rock show ever. A Climate Pledge Arena film.">
+  <meta property="og:title" content="Xanarena: Exit Stage...House Left">
+  <meta property="og:description" content="A Climate Pledge Arena film. Now on home video.">
+  <meta property="og:type" content="video.movie">
+  <meta name="theme-color" content="#030604">
+  <link rel="icon" href="../shared/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;900&family=Montserrat:wght@400;500;600;700;800&family=Oswald:wght@300;400;500&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="haze" aria-hidden="true"></div>
+
+  <div class="page">
+    <header class="masthead">
+      <p class="kicker">A Climate Pledge Arena Film</p>
+      <h1 class="logo">
+        <span class="logo__title">Xanarena</span>
+        <span class="logo__sub" data-text="Exit Stage...House Left">Exit Stage...House Left</span>
+      </h1>
+    </header>
+
+    <main>
+      <section class="player" data-player aria-label="Xanarena video player">
+        <svg class="seal" viewBox="0 0 240 240" aria-hidden="true">
+          <defs>
+            <path id="seal-top" d="M30 128 A90 90 0 0 1 210 128"/>
+            <path id="seal-bottom" d="M40 128 A80 80 0 0 0 200 128"/>
+          </defs>
+          <text class="seal__arc"><textPath href="#seal-top" startOffset="50%" text-anchor="middle">Oscar Nominated</textPath></text>
+          <text class="seal__x" x="120" y="132" text-anchor="middle">x50</text>
+          <text class="seal__arc seal__arc--low"><textPath href="#seal-bottom" startOffset="50%" text-anchor="middle">Film of the Year!</textPath></text>
+        </svg>
+
+        <div class="tv">
+          <div class="tv__screen" data-screen>
+            <canvas class="tv__noise" data-noise aria-hidden="true"></canvas>
+
+            <div class="tv__content" data-content>
+              <div class="slide slide--logo" data-slide="logo">
+                <div class="cpa cpa--big"><span class="cpa__mark">CPA</span><span class="cpa__label">Home Video</span></div>
+                <p class="slide__small">presents</p>
+              </div>
+
+              <div class="slide slide--warning" data-slide="warning">
+                <p class="warning__head warning__head--dew">Distant early warning</p>
+                <p class="warning__body">This videocassette is licensed for private home viewing by Rush fans only. Unauthorized exits, stage left, house left or otherwise, are strictly prohibited.</p>
+                <p class="warning__body">Violators may be subject to the Working Man's curse.</p>
+              </div>
+
+              <div class="slide slide--title" data-slide="title">
+                <p class="slide__title">Xanarena</p>
+                <p class="slide__sub">Exit Stage...House Left</p>
+                <p class="slide__soon"><span class="blink">&#9679;</span> Tape arriving soon</p>
+              </div>
+
+              <div class="slide slide--notape" data-slide="notape">
+                <p class="notape__head">No tape</p>
+                <p class="notape__body">The crows are still delivering it.<br>Check back soon.</p>
+              </div>
+
+              <div class="tv__media" data-media></div>
+            </div>
+
+            <div class="osd" aria-hidden="true">
+              <span class="osd__main" data-osd-main></span>
+              <span class="osd__sp">SP</span>
+              <span class="osd__sub" data-osd-sub></span>
+              <span class="osd__counter" data-osd-counter></span>
+            </div>
+            <p class="visually-hidden" data-announce aria-live="polite"></p>
+
+            <div class="tv__band" aria-hidden="true"></div>
+            <div class="tv__glass" aria-hidden="true"></div>
+          </div>
+
+          <div class="tv__chin">
+            <span class="tv__brand">CPA</span>
+            <span class="tv__grille" aria-hidden="true"></span>
+            <span class="tv__power"><span class="led" data-led aria-hidden="true"></span>Stereo</span>
+          </div>
+        </div>
+
+        <div class="vcr">
+          <div class="vcr__brand">
+            <div class="cpa"><span class="cpa__mark">CPA</span><span class="cpa__label">Home Video</span></div>
+            <span class="vcr__hq">HQ &middot; VHS</span>
+          </div>
+
+          <div class="vcr__slot" aria-hidden="true"><span class="vcr__flap"></span></div>
+
+          <div class="vcr__lcd" aria-hidden="true">
+            <span class="lcd__mode" data-lcd-mode>STOP</span>
+            <span class="lcd__counter"><span class="lcd__ghost">8:88:88</span><span data-lcd-counter>0:00:00</span></span>
+          </div>
+
+          <div class="vcr__transport" role="group" aria-label="Transport controls">
+            <button class="key" type="button" data-action="rew" aria-label="Rewind 10 seconds">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 6v12L2 12zM21 6v12l-9-6z"/></svg><span>Rew</span>
+            </button>
+            <button class="key key--play" type="button" data-action="play" aria-label="Play">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5v14l12-7z"/></svg><span>Play</span>
+            </button>
+            <button class="key" type="button" data-action="pause" aria-label="Pause">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg><span>Pause</span>
+            </button>
+            <button class="key" type="button" data-action="stop" aria-label="Stop">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6h12v12H6z"/></svg><span>Stop</span>
+            </button>
+            <button class="key" type="button" data-action="ff" aria-label="Fast forward 10 seconds">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6v12l9-6zM13 6v12l9-6z"/></svg><span>FF</span>
+            </button>
+            <button class="key" type="button" data-action="eject" aria-label="Eject">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5l8 9H4zM4 16h16v3H4z"/></svg><span>Eject</span>
+            </button>
+          </div>
+
+          <div class="vcr__aux">
+            <div class="tracking" role="group" aria-label="Tracking">
+              <button class="key key--mini" type="button" data-action="track-down" aria-label="Tracking down">&minus;</button>
+              <span class="tracking__label">Tracking</span>
+              <button class="key key--mini" type="button" data-action="track-up" aria-label="Tracking up">+</button>
+            </div>
+            <button class="key key--mini key--wide" type="button" data-action="fx" aria-pressed="true" aria-label="VHS effects">VHS FX</button>
+            <button class="key key--mini key--wide" type="button" data-action="cc" aria-pressed="false" aria-label="Closed captions">CC</button>
+            <button class="key key--mini key--wide" type="button" data-action="mute" aria-pressed="false" aria-label="Mute" data-video-only>Mute</button>
+            <button class="key key--mini key--wide" type="button" data-action="full" aria-label="Full screen" data-video-only>Full</button>
+          </div>
+
+          <input class="vcr__progress" type="range" min="0" max="1000" value="0" step="1" aria-label="Seek" data-progress data-video-only>
+        </div>
+      </section>
+
+      <section class="reviews" aria-label="Reviews">
+        <figure class="review">
+          <blockquote><span class="hl">&ldquo;Absolutely terrifying</span> &ndash; a visceral cinematic masterpiece.&rdquo;</blockquote>
+          <figcaption>Kubla Klan, <cite>Back of House Chronicles</cite></figcaption>
+        </figure>
+        <figure class="review">
+          <blockquote>&ldquo;Visually striking, <span class="hl">deeply unsettling.&rdquo;</span></blockquote>
+          <figcaption>Mike Oxonfire, <cite>Climate Pledge Times</cite></figcaption>
+        </figure>
+      </section>
+
+      <section class="story" aria-labelledby="story-head">
+        <h2 id="story-head" class="eyebrow">The feature presentation</h2>
+        <p>Rush fanatics, Dreamer and Misfit, venture into the enigmatic halls of Xanarena in search of the greatest rock show ever. Guided by two cryptic crows and a stolen map, they must navigate through haunted halls with the looming threat of Working Man's curse. Armed with nothing but a guitar pick, a sustainable bag, and fueled by Alex Lifeson's coffee, Dreamer and Misfit must brave the horrors within to find Rush before they exit stage left...or is it house left?</p>
+      </section>
+
+      <section class="billing" aria-label="Credits">
+        <p class="specs">Color / Approx. 5 minutes / <span class="rating">Rated R40</span><br>Languages / Closed Captions: English, Canadian, Troll</p>
+        <p class="block">
+          <span class="r">Climate Pledge Arena Pictures presents</span> <span class="n">a Fifty Something Production</span>
+          <span class="r">a film by</span> <span class="n">Adrienne Wenner</span>
+          <span class="r">directed by</span> <span class="n">Eddie Hayes</span>
+          <span class="r">starring</span> <span class="n">Monique Sternik &middot; Adrienne Wenner &middot; Jay Cox &middot; Garrett Johnson &middot; Buoy &middot; Steve Ransom &middot; Tom Conroy</span>
+          <span class="r">director of photography</span> <span class="n">Garrett Johnson</span>
+          <span class="r">co-producers</span> <span class="n">Nicole Parra &amp; Chloe Sarmiento</span>
+          <span class="r">art</span> <span class="n">Jason Cabitac</span>
+          <span class="r">backline</span> <span class="n">two dryers, a vending machine, a rotisserie &amp; a sausage maker</span>
+        </p>
+      </section>
+    </main>
+
+    <footer class="spine">
+      <div class="spine__strip">
+        <div class="cpa"><span class="cpa__mark">CPA</span><span class="cpa__label">Home Video</span></div>
+        <span class="spine__title">Xanarena</span>
+        <span class="spine__sub">Exit Stage...House Left</span>
+        <span class="spine__sound">
+          <img src="../shared/feel-the-sound.svg" alt="" width="66" height="54">
+          <span>Feel the<br>sound<small>Stereo</small></span>
+        </span>
+        <span class="spine__cat">VHS 1019</span>
+      </div>
+      <p class="fineprint">Be kind. Rewind. &nbsp;&middot;&nbsp; Made for Rush at Climate Pledge Arena, Seattle.</p>
+    </footer>
+  </div>
+
+  <script src="../shared/config.js"></script>
+  <script src="../shared/video.js"></script>
+  <script src="app.js"></script>
+  <script src="../shared/review-bar.js"></script>
+</body>
+</html>

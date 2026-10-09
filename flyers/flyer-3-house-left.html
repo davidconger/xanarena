@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Xanarena flyer 3: House Left</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="../shared/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Courier+Prime:wght@400;700&family=Montserrat:wght@500;600;700;800&family=Oswald:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="flyer.css">
+  <style>
+    .sheet { display: flex; flex-direction: column; }
+
+    .top { display: flex; justify-content: space-between; align-items: center; }
+    .exit {
+      display: inline-flex;
+      align-items: center;
+      gap: .1in;
+      padding: .05in .16in .06in .12in;
+      border: 3px solid var(--ink);
+      border-radius: 4px;
+      font: 600 .5in/1 var(--cond);
+      letter-spacing: .1em;
+      color: var(--green-ink);
+    }
+    .exit svg { width: .46in; height: .3in; fill: var(--green-ink); }
+    .seats { margin: 0; text-align: right; font: 500 .15in/1.5 var(--cond); letter-spacing: .32em; text-transform: uppercase; }
+
+    .rig { display: block; width: 100%; height: auto; margin: .22in 0 0; }
+
+    .presents { margin: .08in 0 0; text-align: center; font: 600 .13in/1 var(--sans); letter-spacing: .42em; text-transform: uppercase; }
+    .title { margin: .08in 0 0; text-align: center; font: 900 1.04in/1 var(--serif); letter-spacing: .01em; text-transform: uppercase; }
+    .sub { margin: .06in 0 0; text-align: center; font: 700 .28in/1 var(--serif); letter-spacing: .15em; text-transform: uppercase; }
+
+    .ticket {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 2.15in;
+      margin: .3in 0 0;
+      border: 2.5px solid var(--ink);
+      border-radius: .12in;
+      font-family: var(--ticket);
+      overflow: hidden;
+    }
+    .ticket::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: .16in; background: var(--green); border-right: 2.5px solid var(--ink); }
+    .ticket__main { padding: .18in .2in .16in .36in; }
+    .ticket__stub {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: .14in .16in;
+      border-left: 2.5px dashed var(--ink);
+      text-align: center;
+    }
+    .t-small { margin: 0; font-size: .115in; letter-spacing: .06em; text-transform: uppercase; }
+    .t-title { margin: .04in 0 0; font: 700 .44in/1 var(--ticket); letter-spacing: .02em; text-transform: uppercase; }
+    .t-sub { margin: .03in 0 0; font: 700 .17in/1 var(--ticket); text-transform: uppercase; }
+    .seats-grid { display: grid; grid-template-columns: repeat(4, 1fr); margin: .16in 0 0; border: 1.5px solid var(--ink); }
+    .seats-grid div { padding: .05in .08in; border-left: 1.5px solid var(--ink); }
+    .seats-grid div:first-child { border-left: 0; }
+    .seats-grid span { display: block; font-size: .095in; letter-spacing: .1em; text-transform: uppercase; }
+    .seats-grid b { display: block; font-size: .3in; line-height: 1.05; }
+    .t-fine { margin: .12in 0 0; font-size: .1in; letter-spacing: .05em; text-transform: uppercase; }
+    .ticket__stub .qr { width: 1.56in; }
+    .stub-head { margin: 0 0 .08in; font: 700 .15in/1 var(--ticket); letter-spacing: .08em; text-transform: uppercase; }
+    .stub-foot { margin: .06in 0 0; font-size: .1in; letter-spacing: .1em; }
+
+    .call { margin: .2in 0 0; text-align: center; font: 500 .2in/1.3 var(--cond); letter-spacing: .06em; text-transform: uppercase; }
+    .call b { font-weight: 600; color: var(--green-ink); }
+    .call .url { display: block; margin-top: .03in; font: 400 .22in/1 var(--ticket); letter-spacing: .02em; text-transform: none; }
+
+    .tear { margin-top: auto; }
+    .tear__head { display: flex; align-items: center; gap: .08in; margin: 0 0 .04in; font: 600 .12in/1 var(--sans); letter-spacing: .3em; text-transform: uppercase; }
+    .tear__head svg { width: .2in; height: .2in; }
+    .tabs { display: grid; grid-template-columns: repeat(8, 1fr); border-top: 1.5px dashed var(--ink); }
+    .tab {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: .1in .06in .02in;
+      border-left: 1.5px dashed var(--ink);
+    }
+    .tab:first-child { border-left: 0; }
+    .tab .qr { width: .74in; }
+    .tab__text {
+      margin: .08in 0 0;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      font: 600 .12in/1.15 var(--cond);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .tab__text b { font: 900 .15in/1 var(--serif); letter-spacing: .06em; }
+  </style>
+</head>
+<body>
+  <main class="sheet">
+    <div class="top">
+      <span class="exit"><svg viewBox="0 0 46 30" aria-hidden="true"><path d="M0 15L16 0v9h30v12H16v9z"/></svg>EXIT</span>
+      <p class="seats">Please take your seats<br>The show is about to begin</p>
+    </div>
+
+    <svg class="rig" viewBox="0 0 770 92" aria-hidden="true">
+      <defs>
+        <pattern id="truss" width="20" height="22" patternUnits="userSpaceOnUse">
+          <path d="M0 0L10 22L20 0" fill="none" stroke="#111" stroke-width="1.4"/>
+        </pattern>
+      </defs>
+      <rect x="10" y="4" width="750" height="22" fill="url(#truss)" stroke="#111" stroke-width="2.5"/>
+      <g stroke="#111" stroke-width="2">
+        <g fill="#fff">
+          <rect x="70" y="26" width="26" height="22" rx="4"/><rect x="190" y="26" width="26" height="22" rx="4"/>
+          <rect x="310" y="26" width="26" height="22" rx="4"/><rect x="434" y="26" width="26" height="22" rx="4"/>
+          <rect x="554" y="26" width="26" height="22" rx="4"/><rect x="674" y="26" width="26" height="22" rx="4"/>
+        </g>
+        <g fill="none" stroke-dasharray="3 5" stroke-width="1.6">
+          <path d="M74 50L40 92M92 50L126 92"/><path d="M194 50L170 92M212 50L250 92"/>
+          <path d="M556 50L520 92M576 50L600 92"/><path d="M678 50L644 92M696 50L730 92"/>
+        </g>
+        <g fill="none" stroke="#5ee04a" stroke-width="2.4" stroke-dasharray="3 5">
+          <path d="M314 50L290 92M332 50L360 92"/><path d="M438 50L410 92M456 50L480 92"/>
+        </g>
+      </g>
+    </svg>
+
+    <p class="presents">Climate Pledge Arena presents</p>
+    <h1 class="title">Xanarena</h1>
+    <p class="sub">Exit Stage...House Left</p>
+
+    <div class="ticket">
+      <div class="ticket__main">
+        <p class="t-small">Climate Pledge Arena Pictures presents</p>
+        <p class="t-title">Xanarena</p>
+        <p class="t-sub">Exit Stage...House Left</p>
+        <p class="t-small">A Fifty Something Production</p>
+        <div class="seats-grid">
+          <div><span>Sec</span><b>HL</b></div>
+          <div><span>Row</span><b>21</b></div>
+          <div><span>Seat</span><b>12</b></div>
+          <div><span>Gate</span><b>YYZ</b></div>
+        </div>
+        <p class="t-fine">Admit one &middot; Will call &middot; No re-entry once you exit house left</p>
+      </div>
+      <div class="ticket__stub">
+        <p class="stub-head">Scan to watch</p>
+        <div class="qr" data-qr data-quiet="1"></div>
+        <p class="stub-foot">VHS 1019</p>
+      </div>
+    </div>
+
+    <p class="call">The show starts when you scan. <b>Please exit house left.</b><span class="url" data-url></span></p>
+
+    <div class="tear">
+      <p class="tear__head">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M8.5 7.5L20 18M8.5 16.5L20 6"/></svg>
+        Take a ticket
+      </p>
+      <div class="tabs" data-tabs></div>
+    </div>
+  </main>
+
+  <script>
+    (function () {
+      var tab = '<div class="tab"><div class="qr" data-qr data-quiet="2"></div><p class="tab__text"><b>Xanarena</b><br>Admit one &middot; Scan to watch</p></div>';
+      document.querySelector('[data-tabs]').innerHTML = new Array(9).join(tab);
+    })();
+  </script>
+  <script src="../shared/vendor/qrcode.js"></script>
+  <script src="flyer-config.js"></script>
+  <script src="flyer.js"></script>
+</body>
+</html>

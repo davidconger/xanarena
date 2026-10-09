@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 132 108" role="img" aria-label="Feel the sound: Space Needle, Climate Pledge Arena and the Pacific Science Center arches">
+  <!-- Shapes are drawn back to front, filled black and stroked white inside a mask,
+       so nearer shapes hide the lines behind them on any background. -->
+  <defs>
+    <mask id="fts" maskUnits="userSpaceOnUse" x="0" y="0" width="132" height="108">
+      <g fill="#000" stroke="#fff" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round">
+        <!-- Pacific Science Center arches: back row -->
+        <path d="M70 104.5V64.5A7.5 7.5 0 0 1 85 64.5V104.5H83V64.5A5.5 5.5 0 0 0 72 64.5V104.5Z"/>
+        <path d="M90 104.5V65A8 8 0 0 1 106 65V104.5H104V65A6 6 0 0 0 92 65V104.5Z"/>
+        <path d="M110 104.5V65A8.5 8.5 0 0 1 127 65V104.5H125V65A6.5 6.5 0 0 0 112 65V104.5Z"/>
+        <!-- front row -->
+        <path d="M83 104.5V72A7 7 0 0 1 97 72V104.5H95V72A5 5 0 0 0 85 72V104.5Z"/>
+        <path d="M100 104.5V73A7.5 7.5 0 0 1 115 73V104.5H113V73A5.5 5.5 0 0 0 102 73V104.5Z"/>
+
+        <!-- Space Needle -->
+        <path d="M34.5 3.5V12.5"/>
+        <path d="M28.5 26.5L33 56L30 98H40L37 56L41.5 26.5Z"/>
+        <path d="M31.8 26.5L34.3 56L32.8 98M38.2 26.5L35.7 56L37.2 98"/>
+        <path d="M31.5 12.5H37.5V15H41L42 18.5H45.5L48.5 21L45.5 23.5H44.5V26.5H24.5V23.5H23.5L20.5 21L23.5 18.5H27L28 15H31.5Z"/>
+
+        <!-- Climate Pledge Arena -->
+        <path d="M12 96V104.5H104V96Z"/>
+        <path d="M49 78.5L6 93.5H109L64 78.5Z"/>
+        <path d="M5 93.5H110V96H5Z"/>
+        <path d="M46.5 72H66.5L64 78.5H49Z"/>
+        <path d="M55.5 78.5V93.5M58.5 78.5V93.5" fill="none"/>
+        <path d="M27 96L29 104.5M44 104.5L52 96M49 104.5L54.5 96M55.5 96V104.5M58.5 96V104.5M59.5 96L65 104.5M62.5 96L70 104.5M86 96L84.5 104.5" fill="none"/>
+        <path d="M2 104.5H129" fill="none"/>
+      </g>
+    </mask>
+  </defs>
+  <rect width="132" height="108" fill="#f3eedf" mask="url(#fts)"/>
+</svg>

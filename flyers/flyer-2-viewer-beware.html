@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Xanarena flyer 2: Viewer Beware</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="../shared/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Creepster&family=Montserrat:wght@500;600;700;800&family=Oswald:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="flyer.css">
+  <style>
+    :root { --purple: #5b2a91; }
+
+    .frame {
+      position: relative;
+      height: 100%;
+      border: 4px solid var(--ink);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 0 .3in .2in;
+    }
+    .frame::after { content: ''; position: absolute; inset: 6px; border: 1.5px solid var(--green); pointer-events: none; }
+
+    .ooze { position: absolute; left: -4px; right: -4px; top: -4px; z-index: 1; }
+    .ooze svg { display: block; width: 100%; height: auto; }
+
+    .beware { margin: .92in 0 0; font: 400 .44in/1 var(--creep); letter-spacing: .06em; color: var(--purple); }
+
+    .title { width: 6.5in; margin: .04in 0 0; }
+    .title svg { display: block; width: 100%; height: auto; overflow: visible; }
+    .title text { font-family: var(--creep); }
+
+    .sub { margin: .02in 0 0; font: 700 .27in/1 var(--serif); letter-spacing: .16em; text-transform: uppercase; }
+    .kicker { margin: .1in 0 0; font: 600 .12in/1 var(--sans); letter-spacing: .4em; text-transform: uppercase; }
+
+    .scene { position: relative; width: 6.25in; margin: .14in 0 0; }
+    .scene > svg { display: block; width: 100%; height: auto; }
+    .scene .qr { position: absolute; left: 37.6%; top: 49.6%; width: 1.57in; transform: rotate(-3deg); }
+
+    .scare { margin: .12in 0 0; font: 400 .42in/1 var(--creep); letter-spacing: .04em; }
+    .scare em {
+      font-style: normal;
+      font-size: 1.5em;
+      color: var(--green);
+      -webkit-text-stroke: .02in var(--ink);
+      paint-order: stroke fill;
+    }
+
+    .url { margin: .1in 0 0; font: 500 .24in/1 var(--cond); letter-spacing: .08em; text-transform: uppercase; }
+    .url b { color: var(--purple); font-weight: 500; }
+
+    .quote { margin: .16in 0 0; font: 500 .19in/1.2 var(--cond); text-transform: uppercase; }
+    .quote span { color: var(--green-ink); }
+    .quote small { display: block; margin-top: .03in; font: 300 .13in/1 var(--cond); text-transform: none; }
+
+    .foot {
+      margin-top: auto;
+      align-self: stretch;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: .12in;
+      border-top: 1.5px solid var(--ink);
+      font: 700 .11in/1 var(--sans);
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .cpa { display: inline-flex; flex-direction: column; align-items: center; padding: .04in .08in .05in; border: 2px solid var(--ink); }
+    .cpa b { font: 800 .19in/1 var(--sans); }
+    .cpa small { margin-top: .02in; font: 700 .062in/1 var(--sans); letter-spacing: .14em; }
+  </style>
+</head>
+<body>
+  <main class="sheet">
+    <div class="frame">
+      <div class="ooze" aria-hidden="true">
+        <svg viewBox="0 0 780 120">
+          <g data-slime="band" stroke="#111" stroke-width="7" stroke-linejoin="round" fill="#111"></g>
+          <g data-slime="band" fill="#5ee04a"></g>
+        </svg>
+      </div>
+
+      <p class="beware">Viewer beware...</p>
+
+      <h1 class="title">
+        <svg viewBox="0 0 1000 235" role="img" aria-label="Xanarena">
+          <g data-slime="title" stroke="#111" stroke-width="14" stroke-linejoin="round" fill="#111"></g>
+          <g data-slime="title" fill="#5ee04a"></g>
+        </svg>
+      </h1>
+      <p class="sub">Exit Stage...House Left</p>
+      <p class="kicker">A Climate Pledge Arena Film</p>
+
+      <div class="scene">
+        <svg viewBox="0 0 700 430" aria-hidden="true">
+          <defs>
+            <pattern id="chain" width="22" height="22" patternUnits="userSpaceOnUse">
+              <path d="M0 11L11 0L22 11L11 22Z" fill="none" stroke="#111" stroke-width="1.1"/>
+            </pattern>
+            <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#fff"/>
+              <stop offset=".75" stop-color="#fff" stop-opacity=".55"/>
+              <stop offset="1" stop-color="#fff" stop-opacity=".1"/>
+            </linearGradient>
+            <mask id="fence-mask"><rect x="0" y="0" width="700" height="430" fill="url(#fade)"/></mask>
+            <symbol id="crow" viewBox="0 0 120 90">
+              <path d="M4 31l17-5c3-9 13-13 22-9 6 3 9 8 13 13 14 7 33 14 48 27 3 3 5 6 9 10-11-3-25-7-37-7-3 7-9 12-19 13l2 13h5l-1 2H52l2-15c-2 0-4 1-6 0l1 15h4l-1 2h-9l1-17c-11-4-17-13-19-24-2-6-5-9-11-10z"/>
+            </symbol>
+          </defs>
+
+          <circle cx="600" cy="62" r="48" fill="#fff" stroke="#111" stroke-width="2.5"/>
+          <path d="M574 30a48 48 0 0 0 0 64" fill="none" stroke="#5ee04a" stroke-width="4"/>
+
+          <rect x="34" y="122" width="632" height="296" fill="url(#chain)" mask="url(#fence-mask)"/>
+          <path d="M26 122H674" stroke="#111" stroke-width="6" stroke-linecap="round"/>
+          <path d="M34 112V420M666 112V420" stroke="#111" stroke-width="9" stroke-linecap="round"/>
+          <path d="M8 420H692" stroke="#111" stroke-width="3"/>
+
+          <use href="#crow" x="96" y="60" width="86" height="65" fill="#111"/>
+          <circle cx="110" cy="77" r="3.2" fill="#5ee04a"/>
+          <g transform="translate(1124 0) scale(-1 1)">
+            <use href="#crow" x="520" y="66" width="78" height="59" fill="#111"/>
+            <circle cx="532" cy="82" r="3" fill="#5ee04a"/>
+          </g>
+
+          <g transform="rotate(-3 350 280)">
+            <path d="M262 122L270 160M438 122L430 160" stroke="#111" stroke-width="2.5"/>
+            <rect x="232" y="156" width="236" height="262" rx="6" fill="#fff" stroke="#111" stroke-width="4"/>
+            <rect x="241" y="165" width="218" height="244" rx="3" fill="none" stroke="#5ee04a" stroke-width="2"/>
+            <circle cx="270" cy="168" r="4" fill="#111"/><circle cx="430" cy="168" r="4" fill="#111"/>
+            <text x="350" y="204" text-anchor="middle" font-family="Creepster, Impact, fantasy" font-size="31" letter-spacing="1.5" fill="#111">Scan if you dare</text>
+          </g>
+        </svg>
+        <div class="qr" data-qr data-quiet="1"></div>
+      </div>
+
+      <p class="scare">...you're in for a <em>scare!</em></p>
+      <p class="url"><b>Watch now</b> &middot; <span data-url></span></p>
+
+      <p class="quote"><span>&ldquo;Absolutely terrifying</span> &ndash; a visceral cinematic masterpiece.&rdquo;<small>- Kubla Klan, Back of House Chronicles</small></p>
+
+      <div class="foot">
+        <span class="cpa"><b>CPA</b><small>Home Video</small></span>
+        <span>Oscar nominated x50</span>
+        <span>Made for Rush &middot; Seattle</span>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    (function () {
+      function drip(x, top, w, len) {
+        return '<path d="M' + (x - w) + ' ' + top + 'V' + (top + len) + 'a' + w + ' ' + w + ' 0 0 0 ' + (w * 2) + ' 0V' + top + 'Z"/>';
+      }
+      var band = '<path d="M-10 -10H790V22Q760 30 730 22T670 24T610 20T550 26T490 21T430 25T370 20T310 26T250 21T190 25T130 20T70 26T10 21L-10 22Z"/>' +
+        [[48, 10, 46], [118, 7, 22], [196, 12, 58], [286, 8, 34], [352, 10, 46], [446, 7, 18], [514, 13, 62], [604, 8, 30], [668, 10, 58], [736, 7, 26]]
+          .map(function (d) { return drip(d[0], 16, d[1], d[2]); }).join('');
+      var title = '<text x="500" y="178" text-anchor="middle" font-size="206" textLength="930" lengthAdjust="spacingAndGlyphs">XANARENA</text>' +
+        [[96, 10, 34], [226, 8, 20], [338, 11, 44], [468, 8, 24], [598, 10, 38], [716, 8, 18], [842, 11, 40]]
+          .map(function (d) { return drip(d[0], 160, d[1], d[2]); }).join('');
+      document.querySelectorAll('[data-slime="band"]').forEach(function (g) { g.innerHTML = band; });
+      document.querySelectorAll('[data-slime="title"]').forEach(function (g) { g.innerHTML = title; });
+    })();
+  </script>
+  <script src="../shared/vendor/qrcode.js"></script>
+  <script src="flyer-config.js"></script>
+  <script src="flyer.js"></script>
+</body>
+</html>

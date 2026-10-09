@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Xanarena flyer 3B: Will call ticket</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="../shared/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Creepster&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="flyer.css">
+  <style>
+    @page { size: letter landscape; margin: 0; }
+
+    .ticket {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 3.25in;
+      height: 100%;
+      border: 4px solid var(--ink);
+      border-radius: .22in;
+      font-family: var(--ticket);
+      overflow: hidden;
+    }
+    .ticket::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: .32in; background: var(--green); border-right: 4px solid var(--ink); }
+
+    /* punched notches at the perforation */
+    .notch { position: absolute; left: calc(100% - 3.25in); width: .5in; height: .5in; margin-left: -.25in; border: 4px solid var(--ink); border-radius: 50%; background: #fff; z-index: 2; }
+    .notch--top { top: -.29in; }
+    .notch--bottom { bottom: -.29in; }
+
+    .main { display: flex; flex-direction: column; padding: .42in .5in .38in .78in; }
+    .small { margin: 0; font-size: .17in; letter-spacing: .08em; text-transform: uppercase; }
+    .title { margin: .12in 0 0; font: 700 1.12in/.9 var(--ticket); letter-spacing: -.01em; text-transform: uppercase; }
+    .sub { margin: .14in 0 0; font: 700 .34in/1 var(--ticket); white-space: nowrap; text-transform: uppercase; }
+    .prod { margin: .1in 0 0; }
+
+    .seats { display: grid; grid-template-columns: repeat(4, 1fr); margin: auto 0 0; border: 2.5px solid var(--ink); }
+    .seats div { padding: .08in .14in .1in; border-left: 2.5px solid var(--ink); }
+    .seats div:first-child { border-left: 0; }
+    .seats span { display: block; font-size: .14in; letter-spacing: .12em; text-transform: uppercase; }
+    .seats b { display: block; font-size: .62in; line-height: 1; }
+
+    .details { display: flex; gap: .5in; margin: .2in 0 0; }
+    .details p { margin: 0; font-size: .15in; letter-spacing: .06em; text-transform: uppercase; }
+    .details b { display: block; font-size: .24in; letter-spacing: .02em; }
+    .fine { margin: .2in 0 0; font-size: .13in; letter-spacing: .06em; text-transform: uppercase; }
+
+    .stub {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: .3in .3in;
+      border-left: 3px dashed var(--ink);
+      text-align: center;
+    }
+    .dare { margin: 0 0 .16in; font: 400 .36in/1 var(--creep); white-space: nowrap; letter-spacing: .03em; color: var(--ink); }
+    .stub .qr { width: 2.45in; }
+    .stub .url { margin: .14in 0 0; font-size: .15in; letter-spacing: .02em; }
+    .stub .cat { margin: .1in 0 0; font-size: .13in; letter-spacing: .14em; }
+  </style>
+</head>
+<body>
+  <main class="sheet sheet--landscape">
+    <div class="ticket">
+      <span class="notch notch--top" aria-hidden="true"></span>
+      <span class="notch notch--bottom" aria-hidden="true"></span>
+
+      <div class="main">
+        <p class="small">Climate Pledge Arena Pictures presents</p>
+        <h1 class="title">Xanarena</h1>
+        <p class="sub">Exit Stage...House Left</p>
+        <p class="small prod">A Fifty Something Production</p>
+
+        <div class="seats">
+          <div><span>Sec</span><b>HL</b></div>
+          <div><span>Row</span><b>21</b></div>
+          <div><span>Seat</span><b>12</b></div>
+          <div><span>Gate</span><b>YYZ</b></div>
+        </div>
+
+        <div class="details">
+          <p>Showing<b>Now</b></p>
+          <p>Doors<b>When you scan</b></p>
+          <p>Running time<b>Approx. 5 min</b></p>
+        </div>
+        <p class="fine">Admit one &middot; Will call &middot; No re-entry once you exit house left</p>
+      </div>
+
+      <div class="stub">
+        <p class="dare">Scan if you dare</p>
+        <div class="qr" data-qr data-quiet="1"></div>
+        <p class="url" data-url></p>
+        <p class="cat">VHS 1019</p>
+      </div>
+    </div>
+  </main>
+
+  <script src="../shared/vendor/qrcode.js"></script>
+  <script src="flyer-config.js"></script>
+  <script src="flyer.js"></script>
+</body>
+</html>

@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Xanarena: Website concepts</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="shared/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;900&family=Creepster&family=Montserrat:wght@500;600;700;800&family=Oswald:wght@400;500&family=Permanent+Marker&family=VT323&display=swap" rel="stylesheet">
+  <style>
+    :root { --green: #5ee04a; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: 'Montserrat', sans-serif;
+      color: #eef3ee;
+      background:
+        radial-gradient(ellipse 70% 50% at 50% 0%, rgba(70, 200, 70, .14), transparent 70%),
+        #030604;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: clamp(2.5rem, 6vw, 5rem) 1.25rem 3rem;
+    }
+    .sign {
+      margin: 0;
+      font: 400 .78rem/1 'Oswald', sans-serif;
+      letter-spacing: .5em;
+      text-transform: uppercase;
+      color: var(--green);
+      text-shadow: 0 0 10px rgba(94, 224, 74, .6);
+    }
+    h1 {
+      margin: .6rem 0 .4rem;
+      font: 900 clamp(2.4rem, 7vw, 4.6rem)/1 'Cinzel', serif;
+      text-transform: uppercase;
+      letter-spacing: .03em;
+      background: linear-gradient(180deg, #e2ffbf, #6fe55a 50%, #237a2c);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      filter: drop-shadow(0 0 20px rgba(94, 224, 74, .35));
+    }
+    .lede { margin: 0 0 clamp(2.4rem, 6vw, 3.6rem); max-width: 52ch; text-align: center; color: #a3b3a6; }
+    .shelf {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      max-width: 1320px;
+      gap: clamp(1.2rem, 3vw, 2.2rem);
+      padding-bottom: 1.6rem;
+      position: relative;
+    }
+    .shelf::after {
+      content: '';
+      position: absolute;
+      left: -4%; right: -4%; bottom: 0;
+      height: 16px;
+      border-radius: 2px;
+      background: linear-gradient(180deg, #2a2016, #140e09);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, .8), inset 0 1px 0 rgba(255, 255, 255, .08);
+    }
+    .tape {
+      position: relative;
+      flex: 0 1 228px;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      aspect-ratio: 5 / 8.4;
+      padding: 1.1rem 1rem 1rem;
+      color: inherit;
+      text-decoration: none;
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 30px 40px -18px rgba(0, 0, 0, .9), inset 0 0 0 1px rgba(255, 255, 255, .06);
+      transition: transform .25s cubic-bezier(.2, .8, .3, 1), box-shadow .25s;
+    }
+    .tape:hover, .tape:focus-visible { transform: translateY(-10px) rotate(-1deg); box-shadow: 0 40px 50px -18px rgba(0, 0, 0, .9), 0 0 40px rgba(94, 224, 74, .18); }
+    .tape:focus-visible { outline: 2px solid var(--green); outline-offset: 4px; }
+    .tape::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(115deg, rgba(255, 255, 255, .14), transparent 35%);
+      pointer-events: none;
+    }
+    .num { font: 500 .7rem/1 'Oswald', sans-serif; letter-spacing: .3em; text-transform: uppercase; opacity: .75; }
+    .name { margin-top: auto; font: 900 1.55rem/1.05 'Cinzel', serif; text-transform: uppercase; }
+    .desc { margin-top: .6rem; font-size: .8rem; line-height: 1.5; color: rgba(238, 243, 238, .82); }
+
+    .t1 { background: radial-gradient(ellipse at 50% 35%, #12301a, #050906 70%); border: 2px solid #3fd04c; }
+    .t1 .art {
+      margin: 1.2rem auto 0;
+      width: 78%;
+      aspect-ratio: 4 / 3;
+      border-radius: 14px / 18px;
+      background:
+        repeating-linear-gradient(0deg, rgba(0, 0, 0, .35) 0 1px, transparent 1px 3px),
+        radial-gradient(ellipse at center, #2e7a34, #061008 75%);
+      box-shadow: 0 0 0 8px #161a17, 0 0 0 9px #2a302b, 0 0 30px rgba(94, 224, 74, .25);
+      display: grid;
+      place-items: center;
+      font: 400 1.2rem/1 'Courier New', monospace;
+      color: #9dff86;
+      text-shadow: 0 0 6px #7dff6a;
+    }
+    .t1b { background: radial-gradient(ellipse at 50% 35%, #2a0f48, #08030f 70%); border: 2px solid #7b3fc4; }
+    .t1b .art {
+      margin: 1.2rem auto 0;
+      width: 78%;
+      aspect-ratio: 4 / 3;
+      border-radius: 14px / 18px;
+      background:
+        repeating-linear-gradient(0deg, rgba(0, 0, 0, .35) 0 1px, transparent 1px 3px),
+        radial-gradient(ellipse at center, #4a1d7a, #0c0416 75%);
+      box-shadow: 0 0 0 8px #161a17, 0 0 0 9px #2a302b, 0 0 30px rgba(123, 63, 196, .35);
+      display: grid;
+      place-content: center;
+      text-align: center;
+      font: 400 1.05rem/1.1 'Creepster', cursive;
+      letter-spacing: .04em;
+      color: #9dff6a;
+      text-shadow: 0 2px 0 #12051f, 0 0 10px rgba(125, 255, 90, .5);
+    }
+    .t1c { background: radial-gradient(ellipse at 50% 35%, #2b1c06, #0a0703 70%); border: 2px solid #e0a43c; }
+    .t1c .art {
+      margin: 1.4rem auto 0;
+      padding: .5rem .8rem .35rem;
+      border-radius: 3px;
+      background: #08130a;
+      box-shadow: 0 0 0 6px #1b1b1b, 0 0 0 7px #333, 0 0 24px rgba(94, 224, 74, .25);
+      font: 400 2.1rem/1 'VT323', monospace;
+      letter-spacing: .06em;
+      color: #5ee04a;
+      text-shadow: 0 0 10px rgba(94, 224, 74, .6);
+    }
+    .t1c .art::before { content: ''; display: inline-block; width: 8px; height: 8px; margin: 0 .5rem .35rem 0; border-radius: 50%; background: #ff5a3c; box-shadow: 0 0 8px #ff5a3c; animation: yyz 2.6s steps(1) infinite; }
+    @keyframes yyz { 0%, 12%, 16%, 20%, 24%, 36% { opacity: 1; } 11%, 15%, 19%, 23%, 35%, 100% { opacity: .2; } }
+    @media (prefers-reduced-motion: reduce) { .t1c .art::before { animation: none; } }
+    .t2 { background: linear-gradient(180deg, #071209, #020403); border: 2px solid #3fd04c; }
+    .t2 .art {
+      margin: 1rem -1rem 0;
+      height: 46%;
+      background:
+        repeating-linear-gradient(45deg, transparent 0 12px, rgba(150, 230, 140, .25) 12px 13px),
+        repeating-linear-gradient(-45deg, transparent 0 12px, rgba(150, 230, 140, .25) 12px 13px),
+        radial-gradient(ellipse at 60% 50%, rgba(120, 230, 110, .5), transparent 70%);
+      position: relative;
+    }
+    .t2 .art::after {
+      content: 'New';
+      position: absolute;
+      right: 1rem; top: .6rem;
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      display: grid; place-items: center;
+      background: #ff7a1a;
+      color: #160800;
+      font: 900 .9rem/1 'Montserrat', sans-serif;
+      text-transform: uppercase;
+      transform: rotate(14deg);
+    }
+    .t3 {
+      background:
+        linear-gradient(180deg, transparent 60%, rgba(0, 0, 0, .7)),
+        conic-gradient(from 160deg at 30% 0%, transparent 0deg, rgba(190, 215, 255, .28) 12deg, transparent 24deg),
+        conic-gradient(from 165deg at 70% 0%, transparent 0deg, rgba(120, 255, 120, .28) 12deg, transparent 24deg),
+        #05080a;
+      border: 2px solid #232a26;
+    }
+    .t3 .art { margin-top: .8rem; display: flex; }
+    .t3 .exit {
+      padding: .25rem .55rem;
+      border-radius: 3px;
+      background: #0d100e;
+      box-shadow: inset 0 0 0 1px #2a302b, 0 0 24px rgba(61, 255, 99, .3);
+      font: 500 1.05rem/1 'Oswald', sans-serif;
+      letter-spacing: .14em;
+      color: #3dff63;
+      text-shadow: 0 0 8px #3dff63;
+    }
+    .t3 .marker { margin-top: 1.2rem; font: 400 1rem/1.3 'Permanent Marker', cursive; color: #efe8d6; transform: rotate(-3deg); }
+    .flyers { display: flex; flex-wrap: wrap; justify-content: center; gap: .8rem; margin: 2.6rem 0 0; text-align: center; }
+    .flyers a { display: inline-flex; align-items: center; min-height: 44px; padding: .7rem 1.4rem; border: 1px solid #2f4a33; border-radius: 3px; color: #8ef07a; font-size: .78rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; text-decoration: none; }
+    .flyers a:hover, .flyers a:focus-visible { border-color: #5ee04a; color: #fff; }
+    .foot { margin-top: 1.6rem; font-size: .72rem; letter-spacing: .2em; text-transform: uppercase; color: #5e6b63; text-align: center; }
+    @media (max-width: 1339px) {
+      .shelf { max-width: 800px; }
+      .shelf::after { display: none; }
+    }
+    @media (max-width: 560px) {
+      .tape { flex-basis: 100%; aspect-ratio: auto; }
+      .tape .name { margin-top: 1.2rem; }
+      .t1 .art, .t1b .art { width: 62%; }
+      .t2 .art { height: 120px; }
+    }
+  </style>
+</head>
+<body>
+  <p class="sign">Staff picks</p>
+  <h1>Xanarena</h1>
+  <p class="lede">Directions for the Xanarena watch page. Same tape, different ways to press play.</p>
+
+  <div class="shelf">
+    <a class="tape t1" href="concept-1-be-kind-rewind/index.html">
+      <span class="num">Concept 1</span>
+      <span class="art" aria-hidden="true">PLAY &#9654;&#xFE0E;</span>
+      <span class="name">Be Kind, Rewind</span>
+      <span class="desc">Your basement in 1984. A CRT and a working VCR deck, with tracking, an on-screen display, a pre-roll warning card and a few Rush easter eggs.</span>
+    </a>
+    <a class="tape t1b" href="concept-1b-viewer-beware/index.html">
+      <span class="num">Concept 1B</span>
+      <span class="art" aria-hidden="true">Viewer beware...</span>
+      <span class="name">Viewer Beware</span>
+      <span class="desc">Same TV and VCR as concept 1, with a kids-horror TV intro in the pre-roll: moonlit street, crows, a dropped guitar case and a slimy X.</span>
+    </a>
+    <a class="tape t1c" href="concept-1c-deep-cuts/index.html">
+      <span class="num">Concept 1C</span>
+      <span class="art" aria-hidden="true">0:21:12</span>
+      <span class="name">Deep Cuts</span>
+      <span class="desc">Concept 1 with every player egg on. Adds a "Distant early warning" card and a Rated R40 rating to the eggs 1 and 1B already have.</span>
+    </a>
+    <a class="tape t1" href="index.html">
+      <span class="num">Concept 1D &middot; Home page</span>
+      <span class="art" aria-hidden="true">&#9654;&#xFE0E; YT</span>
+      <span class="name">Be Kind, Rewind (YouTube)</span>
+      <span class="desc">Concept 1 playing a YouTube-hosted tape. The pre-roll runs until you press play, then the deck drives the YouTube player.</span>
+    </a>
+    <a class="tape t2" href="concept-2-midnight-rental/index.html">
+      <span class="num">Concept 2</span>
+      <span class="art" aria-hidden="true"></span>
+      <span class="name">Midnight Rental</span>
+      <span class="desc">The box itself, unfolded. Horror-shelf front cover with fog, chain-link and crows, then turn it over to watch.</span>
+    </a>
+    <a class="tape t3" href="concept-3-house-left/index.html">
+      <span class="num">Concept 3</span>
+      <span class="art" aria-hidden="true"><span class="exit">&larr; EXIT</span></span>
+      <span class="marker" aria-hidden="true">Encore: House left</span>
+      <span class="name">House Left</span>
+      <span class="desc">Arena rock night. Spotlights, lighters in the crowd, a ticket stub, laminates, a setlist and a tour-shirt credit roll.</span>
+    </a>
+  </div>
+
+  <p class="flyers"><a href="flyers/index.html">Printable flyers &rarr;</a><a href="easter-eggs/index.html">Easter egg lab &rarr;</a></p>
+  <p class="foot">Be kind. Rewind.</p>
+</body>
+</html>

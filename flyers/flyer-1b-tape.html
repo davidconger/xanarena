@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Xanarena flyer 1B: The tape</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="../shared/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Montserrat:wght@600;700;800&family=Permanent+Marker&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="flyer.css">
+  <style>
+    @page { size: letter landscape; margin: 0; }
+    .scene { display: block; width: 100%; height: 100%; }
+    .hand { font-family: var(--marker); fill: #1a1a1a; }
+  </style>
+</head>
+<body>
+  <main class="sheet sheet--landscape">
+    <!-- 1 viewBox unit = 0.01in of the 10.2 x 7.7in printable area -->
+    <svg class="scene" viewBox="0 0 1020 770" role="img" aria-label="A VHS tape seen from the window side: reels on both ends and a handwritten label in the middle that says Xanarena, play me, with a QR code.">
+      <g transform="translate(0 64)">
+        <defs>
+          <linearGradient id="b-shell" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#262626"/><stop offset=".45" stop-color="#171717"/><stop offset="1" stop-color="#0d0d0d"/></linearGradient>
+          <pattern id="b-grain" width="7" height="7" patternUnits="userSpaceOnUse"><circle cx="1.5" cy="1.5" r=".8" fill="#fff" opacity=".06"/><circle cx="5" cy="4.5" r=".8" fill="#000" opacity=".35"/></pattern>
+          <pattern id="b-ridge" width="9" height="10" patternUnits="userSpaceOnUse"><rect width="5" height="10" fill="#2b2b2b"/><rect x="5" width="1" height="10" fill="#0a0a0a"/></pattern>
+          <linearGradient id="b-glass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f4f6f6"/><stop offset=".55" stop-color="#b4babd"/><stop offset="1" stop-color="#7d8487"/></linearGradient>
+          <clipPath id="b-wl"><path d="M286 106H156C74 106 30 200 30 307C30 414 74 508 156 508H286Z"/></clipPath>
+          <clipPath id="b-wr"><path d="M734 106H864C946 106 990 200 990 307C990 414 946 508 864 508H734Z"/></clipPath>
+        </defs>
+
+        <!-- shell -->
+        <rect x="0" y="0" width="1020" height="562" rx="26" fill="url(#b-shell)" stroke="#000" stroke-width="3"/>
+        <rect x="0" y="0" width="1020" height="562" rx="26" fill="url(#b-grain)"/>
+        <rect x="16" y="14" width="988" height="62" rx="10" fill="#1c1c1c" stroke="#303030" stroke-width="2"/>
+        <rect x="28" y="24" width="964" height="42" rx="4" fill="url(#b-ridge)"/>
+        <path d="M16 90H1004" stroke="#2c2c2c" stroke-width="2"/>
+
+        <!-- left window: full reel -->
+        <path d="M286 106H156C74 106 30 200 30 307C30 414 74 508 156 508H286Z" fill="#3a3e40"/>
+        <g clip-path="url(#b-wl)">
+          <circle cx="182" cy="307" r="132" fill="#1a1310"/>
+          <g fill="none" stroke="#2b211b" stroke-width="1.5"><circle cx="182" cy="307" r="112"/><circle cx="182" cy="307" r="92"/><circle cx="182" cy="307" r="74"/></g>
+          
+          <circle cx="182" cy="307" r="54" fill="#f2f2ee" stroke="#b9b9b4" stroke-width="2"/>
+          <circle cx="182" cy="307" r="34" fill="#dcdcd6"/>
+          <g fill="#2a2d2f" transform="translate(182 307)">
+            <path d="M-6 -50h12v14h-12z" transform="rotate(0)"/><path d="M-6 -50h12v14h-12z" transform="rotate(120)"/><path d="M-6 -50h12v14h-12z" transform="rotate(240)"/>
+            <circle r="15"/>
+            <path d="M-3 -22h6v8h-6zM-3 14h6v8h-6zM-22 -3h8v6h-8zM14 -3h8v6h-8z"/>
+          </g>
+          <path d="M286 106H156C74 106 30 200 30 307C30 414 74 508 156 508H286Z" fill="url(#b-glass)" opacity=".26"/>
+          <path d="M60 508L210 106H250L100 508Z" fill="#fff" opacity=".14"/>
+        </g>
+        <path d="M286 106H156C74 106 30 200 30 307C30 414 74 508 156 508H286Z" fill="none" stroke="#050505" stroke-width="5"/>
+        <path d="M286 106H156C74 106 30 200 30 307C30 414 74 508 156 508H286Z" fill="none" stroke="#3c3c3c" stroke-width="1.5" transform="translate(0 3)"/>
+
+        <!-- right window: nearly empty reel, because it was rewound -->
+        <path d="M734 106H864C946 106 990 200 990 307C990 414 946 508 864 508H734Z" fill="#3a3e40"/>
+        <g clip-path="url(#b-wr)">
+          <circle cx="838" cy="307" r="68" fill="#1a1310"/>
+          
+          <circle cx="838" cy="307" r="54" fill="#f2f2ee" stroke="#b9b9b4" stroke-width="2"/>
+          <circle cx="838" cy="307" r="34" fill="#dcdcd6"/>
+          <g fill="#2a2d2f" transform="translate(838 307)">
+            <path d="M-6 -50h12v14h-12z" transform="rotate(0)"/><path d="M-6 -50h12v14h-12z" transform="rotate(120)"/><path d="M-6 -50h12v14h-12z" transform="rotate(240)"/>
+            <circle r="15"/>
+            <path d="M-3 -22h6v8h-6zM-3 14h6v8h-6zM-22 -3h8v6h-8zM14 -3h8v6h-8z"/>
+          </g>
+          <path d="M734 106H864C946 106 990 200 990 307C990 414 946 508 864 508H734Z" fill="url(#b-glass)" opacity=".26"/>
+          <path d="M760 508L910 106H950L800 508Z" fill="#fff" opacity=".14"/>
+        </g>
+        <path d="M734 106H864C946 106 990 200 990 307C990 414 946 508 864 508H734Z" fill="none" stroke="#050505" stroke-width="5"/>
+        <path d="M734 106H864C946 106 990 200 990 307C990 414 946 508 864 508H734Z" fill="none" stroke="#3c3c3c" stroke-width="1.5" transform="translate(0 3)"/>
+
+        <!-- center label -->
+        <rect x="300" y="104" width="420" height="406" rx="8" fill="#0a0a0a" stroke="#2c2c2c" stroke-width="2"/>
+        <rect x="310" y="114" width="400" height="386" rx="4" fill="#fbfbf7"/>
+        <rect x="310" y="114" width="400" height="12" rx="2" fill="#5ee04a"/>
+        <g stroke="#c6d4e2" stroke-width="1.5"><path d="M324 196H696M324 250H440M324 304H440M324 358H440M324 412H440M324 460H696"/></g>
+        <text x="330" y="178" font-family="'Permanent Marker', cursive" font-size="46" fill="#151515" transform="rotate(-3 330 178)">Xanarena</text>
+        <text x="330" y="244" font-family="'Permanent Marker', cursive" font-size="34" fill="#151515" transform="rotate(-4 330 244)">Play</text>
+        <text x="342" y="290" font-family="'Permanent Marker', cursive" font-size="34" fill="#151515" transform="rotate(-4 342 290)">me!</text>
+        <path d="M352 312C368 346 402 352 438 334M424 322L440 333L426 346" fill="none" stroke="#151515" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="330" y="404" font-family="'Permanent Marker', cursive" font-size="20" fill="#1e8f2c">Do NOT</text>
+        <text x="330" y="430" font-family="'Permanent Marker', cursive" font-size="20" fill="#1e8f2c">tape over!!</text>
+        <text x="330" y="488" font-family="'Permanent Marker', cursive" font-size="21" fill="#2a2a2a">Exit stage...house left &#183; SP</text>
+        <svg x="452" y="198" width="244" height="244" data-qr data-quiet="1"></svg>
+
+        <!-- bottom lip -->
+        <g fill="#0a0a0a" stroke="#2e2e2e" stroke-width="2"><circle cx="58" cy="534" r="9"/><circle cx="962" cy="534" r="9"/></g>
+        <text x="510" y="546" text-anchor="middle" font-family="Montserrat, Arial, sans-serif" font-weight="800" font-style="italic" font-size="24" letter-spacing="3" fill="none" stroke="#4a4a4a" stroke-width="1.2">VHS</text>
+        <text x="190" y="543" font-family="Montserrat, Arial, sans-serif" font-weight="700" font-size="14" letter-spacing="3" fill="#4a4a4a">T-120</text>
+        <text x="830" y="543" text-anchor="end" font-family="Montserrat, Arial, sans-serif" font-weight="700" font-size="14" letter-spacing="3" fill="#4a4a4a">CPA HOME VIDEO</text>
+      </g>
+
+      <text x="510" y="704" text-anchor="middle" font-family="Courier Prime, monospace" font-size="20" letter-spacing="1" fill="#111" data-url></text>
+    </svg>
+  </main>
+
+  <script src="../shared/vendor/qrcode.js"></script>
+  <script src="flyer-config.js"></script>
+  <script src="flyer.js"></script>
+</body>
+</html>

@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Xanarena flyer 1: Be Kind, Rewind</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="../shared/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Montserrat:wght@500;600;700;800&family=Oswald:wght@300;400;500&family=Permanent+Marker&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="flyer.css">
+  <style>
+    .frame {
+      position: relative;
+      height: 100%;
+      border: 3px solid var(--ink);
+      padding: .16in .34in .22in;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .frame::after {
+      content: '';
+      position: absolute;
+      inset: 5px;
+      border: 1.5px solid var(--green);
+      pointer-events: none;
+    }
+
+    .topbar {
+      align-self: stretch;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: .09in .18in;
+      background: var(--ink);
+      color: #fff;
+      font: 700 .15in/1 var(--sans);
+      letter-spacing: .32em;
+      text-transform: uppercase;
+    }
+    .topbar b { color: var(--green); font-weight: 700; letter-spacing: .18em; }
+
+    .kicker { margin: .26in 0 0; font: 600 .13in/1 var(--sans); letter-spacing: .42em; text-transform: uppercase; }
+
+    .title {
+      margin: .06in 0 0;
+      font: 900 1.02in/1 var(--serif);
+      letter-spacing: .01em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-shadow: .045in .045in 0 var(--green);
+    }
+    .sub { margin: .1in 0 0; font: 700 .3in/1 var(--serif); letter-spacing: .14em; text-transform: uppercase; }
+
+    .tape { position: relative; width: 6.6in; margin: .32in 0 0; }
+    .tape__shell { display: block; width: 100%; height: auto; }
+
+    .seal { position: absolute; right: -.42in; top: -.55in; width: 1.3in; transform: rotate(10deg); }
+    .seal text { font-family: var(--serif); font-weight: 700; fill: var(--ink); letter-spacing: .06em; text-transform: uppercase; }
+
+    .cta { margin: .22in 0 0; font: 600 .19in/1.2 var(--sans); }
+    .cta strong { color: var(--green-ink); }
+    .url { margin: .08in 0 0; font: 400 .34in/1 var(--mono); letter-spacing: .06em; }
+    .url span { color: var(--green-ink); }
+
+    .reviews { display: grid; grid-template-columns: 1fr 1fr; gap: .35in; margin: .3in 0 0; align-self: stretch; }
+    .reviews figure { margin: 0; }
+    .reviews blockquote { margin: 0; font: 500 .22in/1.15 var(--cond); text-transform: uppercase; }
+    .reviews .hl { color: var(--green-ink); }
+    .reviews figcaption { margin-top: .05in; font: 300 .14in/1.2 var(--cond); }
+
+    .billing { margin: .22in 0 0; font: 400 .118in/1.4 var(--cond); text-transform: uppercase; color: #222; }
+    .billing .n { font-size: .15in; color: var(--green-ink); }
+
+    .spine {
+      margin-top: auto;
+      align-self: stretch;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: .2in;
+      padding-top: .14in;
+      border-top: 1.5px solid var(--ink);
+      font: 700 .12in/1 var(--sans);
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .cpa { display: inline-flex; flex-direction: column; align-items: center; padding: .05in .09in .06in; border: 2px solid var(--ink); }
+    .cpa b { font: 800 .22in/1 var(--sans); letter-spacing: .02em; }
+    .cpa small { margin-top: .02in; font: 700 .07in/1 var(--sans); letter-spacing: .14em; }
+  </style>
+</head>
+<body>
+  <main class="sheet">
+    <div class="frame">
+      <div class="topbar"><span>Now on home video</span><b>VHS 1019</b></div>
+
+      <p class="kicker">A Climate Pledge Arena Film</p>
+      <h1 class="title">Xanarena</h1>
+      <p class="sub">Exit Stage...House Left</p>
+
+      <div class="tape">
+        <svg class="tape__shell" viewBox="0 0 1020 562" role="img" aria-label="A VHS tape with a handwritten label that says Xanarena, play me, and a QR code.">
+          <defs>
+            <linearGradient id="a-shell" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#262626"/><stop offset=".45" stop-color="#171717"/><stop offset="1" stop-color="#0d0d0d"/></linearGradient>
+            <pattern id="a-grain" width="7" height="7" patternUnits="userSpaceOnUse"><circle cx="1.5" cy="1.5" r=".8" fill="#fff" opacity=".06"/><circle cx="5" cy="4.5" r=".8" fill="#000" opacity=".35"/></pattern>
+            <pattern id="a-ridge" width="9" height="10" patternUnits="userSpaceOnUse"><rect width="5" height="10" fill="#2b2b2b"/><rect x="5" width="1" height="10" fill="#0a0a0a"/></pattern>
+            <linearGradient id="a-glass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f4f6f6"/><stop offset=".55" stop-color="#b4babd"/><stop offset="1" stop-color="#7d8487"/></linearGradient>
+            <clipPath id="a-wl"><path d="M286 106H156C74 106 30 200 30 307C30 414 74 508 156 508H286Z"/></clipPath>
+            <clipPath id="a-wr"><path d="M734 106H864C946 106 990 200 990 307C990 414 946 508 864 508H734Z"/></clipPath>
+          </defs>
+
+          <!-- shell -->
+          <rect x="0" y="0" width="1020" height="562" rx="26" fill="url(#a-shell)" stroke="#000" stroke-width="3"/>
+          <rect x="0" y="0" width="1020" height="562" rx="26" fill="url(#a-grain)"/>
+          <rect x="16" y="14" width="988" height="62" rx="10" fill="#1c1c1c" stroke="#303030" stroke-width="2"/>
+          <rect x="28" y="24" width="964" height="42" rx="4" fill="url(#a-ridge)"/>
+          <path d="M16 90H1004" stroke="#2c2c2c" stroke-width="2"/>
+
+          <!-- left window: full reel -->
+          <path d="M286 106H156C74 106 30 200 30 307C30 414 74 508 156 508H286Z" fill="#3a3e40"/>
+          <g clip-path="url(#a-wl)">
+            <circle cx="182" cy="307" r="132" fill="#1a1310"/>
+            <g fill="none" stroke="#2b211b" stroke-width="1.5"><circle cx="182" cy="307" r="112"/><circle cx="182" cy="307" r="92"/><circle cx="182" cy="307" r="74"/></g>
+            
+            <circle cx="182" cy="307" r="54" fill="#f2f2ee" stroke="#b9b9b4" stroke-width="2"/>
+            <circle cx="182" cy="307" r="34" fill="#dcdcd6"/>
+            <g fill="#2a2d2f" transform="translate(182 307)">
+              <path d="M-6 -50h12v14h-12z" transform="rotate(0)"/><path d="M-6 -50h12v14h-12z" transform="rotate(120)"/><path d="M-6 -50h12v14h-12z" transform="rotate(240)"/>
+              <circle r="15"/>
+              <path d="M-3 -22h6v8h-6zM-3 14h6v8h-6zM-22 -3h8v6h-8zM14 -3h8v6h-8z"/>
+            </g>
+            <path d="M286 106H156C74 106 30 200 30 307C30 414 74 508 156 508H286Z" fill="url(#a-glass)" opacity=".26"/>
+            <path d="M60 508L210 106H250L100 508Z" fill="#fff" opacity=".14"/>
+          </g>
+          <path d="M286 106H156C74 106 30 200 30 307C30 414 74 508 156 508H286Z" fill="none" stroke="#050505" stroke-width="5"/>
+          <path d="M286 106H156C74 106 30 200 30 307C30 414 74 508 156 508H286Z" fill="none" stroke="#3c3c3c" stroke-width="1.5" transform="translate(0 3)"/>
+
+          <!-- right window: nearly empty reel, because it was rewound -->
+          <path d="M734 106H864C946 106 990 200 990 307C990 414 946 508 864 508H734Z" fill="#3a3e40"/>
+          <g clip-path="url(#a-wr)">
+            <circle cx="838" cy="307" r="68" fill="#1a1310"/>
+            
+            <circle cx="838" cy="307" r="54" fill="#f2f2ee" stroke="#b9b9b4" stroke-width="2"/>
+            <circle cx="838" cy="307" r="34" fill="#dcdcd6"/>
+            <g fill="#2a2d2f" transform="translate(838 307)">
+              <path d="M-6 -50h12v14h-12z" transform="rotate(0)"/><path d="M-6 -50h12v14h-12z" transform="rotate(120)"/><path d="M-6 -50h12v14h-12z" transform="rotate(240)"/>
+              <circle r="15"/>
+              <path d="M-3 -22h6v8h-6zM-3 14h6v8h-6zM-22 -3h8v6h-8zM14 -3h8v6h-8z"/>
+            </g>
+            <path d="M734 106H864C946 106 990 200 990 307C990 414 946 508 864 508H734Z" fill="url(#a-glass)" opacity=".26"/>
+            <path d="M760 508L910 106H950L800 508Z" fill="#fff" opacity=".14"/>
+          </g>
+          <path d="M734 106H864C946 106 990 200 990 307C990 414 946 508 864 508H734Z" fill="none" stroke="#050505" stroke-width="5"/>
+          <path d="M734 106H864C946 106 990 200 990 307C990 414 946 508 864 508H734Z" fill="none" stroke="#3c3c3c" stroke-width="1.5" transform="translate(0 3)"/>
+
+          <!-- center label -->
+          <rect x="300" y="104" width="420" height="406" rx="8" fill="#0a0a0a" stroke="#2c2c2c" stroke-width="2"/>
+          <rect x="310" y="114" width="400" height="386" rx="4" fill="#fbfbf7"/>
+          <rect x="310" y="114" width="400" height="12" rx="2" fill="#5ee04a"/>
+          <g stroke="#c6d4e2" stroke-width="1.5"><path d="M324 196H696M324 250H440M324 304H440M324 358H440M324 412H440M324 460H696"/></g>
+          <text x="330" y="178" font-family="'Permanent Marker', cursive" font-size="46" fill="#151515" transform="rotate(-3 330 178)">Xanarena</text>
+          <text x="330" y="244" font-family="'Permanent Marker', cursive" font-size="34" fill="#151515" transform="rotate(-4 330 244)">Play</text>
+          <text x="342" y="290" font-family="'Permanent Marker', cursive" font-size="34" fill="#151515" transform="rotate(-4 342 290)">me!</text>
+          <path d="M352 312C368 346 402 352 438 334M424 322L440 333L426 346" fill="none" stroke="#151515" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="330" y="404" font-family="'Permanent Marker', cursive" font-size="20" fill="#1e8f2c">Do NOT</text>
+          <text x="330" y="430" font-family="'Permanent Marker', cursive" font-size="20" fill="#1e8f2c">tape over!!</text>
+          <text x="330" y="488" font-family="'Permanent Marker', cursive" font-size="21" fill="#2a2a2a">Exit stage...house left &#183; SP</text>
+          <svg x="452" y="198" width="244" height="244" data-qr data-quiet="1"></svg>
+
+          <!-- bottom lip -->
+          <g fill="#0a0a0a" stroke="#2e2e2e" stroke-width="2"><circle cx="58" cy="534" r="9"/><circle cx="962" cy="534" r="9"/></g>
+          <text x="510" y="546" text-anchor="middle" font-family="Montserrat, Arial, sans-serif" font-weight="800" font-style="italic" font-size="24" letter-spacing="3" fill="none" stroke="#4a4a4a" stroke-width="1.2">VHS</text>
+          <text x="190" y="543" font-family="Montserrat, Arial, sans-serif" font-weight="700" font-size="14" letter-spacing="3" fill="#4a4a4a">T-120</text>
+          <text x="830" y="543" text-anchor="end" font-family="Montserrat, Arial, sans-serif" font-weight="700" font-size="14" letter-spacing="3" fill="#4a4a4a">CPA HOME VIDEO</text>
+        </svg>
+
+        <svg class="seal" viewBox="0 0 240 240" aria-hidden="true">
+          <defs>
+            <path id="s-top" d="M30 128 A90 90 0 0 1 210 128"/>
+            <path id="s-bot" d="M40 128 A80 80 0 0 0 200 128"/>
+          </defs>
+          <circle cx="120" cy="120" r="114" fill="#fff" stroke="#111" stroke-width="4"/>
+          <circle cx="120" cy="120" r="104" fill="none" stroke="#5ee04a" stroke-width="3"/>
+          <text font-size="23"><textPath href="#s-top" startOffset="50%" text-anchor="middle">Oscar Nominated</textPath></text>
+          <text x="120" y="138" text-anchor="middle" font-size="44" style="fill:#1e8f2c;font-weight:900">x50</text>
+          <text font-size="20"><textPath href="#s-bot" startOffset="50%" text-anchor="middle">Film of the Year!</textPath></text>
+        </svg>
+      </div>
+
+      <p class="cta">Point your phone at the label. <strong>That's the play button.</strong></p>
+      <p class="url"><span>&#9654;&#xFE0E; PLAY</span> <span data-url></span></p>
+
+      <div class="reviews">
+        <figure>
+          <blockquote><span class="hl">&ldquo;Absolutely terrifying</span> &ndash; a visceral cinematic masterpiece.&rdquo;</blockquote>
+          <figcaption>- Kubla Klan, Back of House Chronicles</figcaption>
+        </figure>
+        <figure>
+          <blockquote>&ldquo;Visually striking, <span class="hl">deeply unsettling.&rdquo;</span></blockquote>
+          <figcaption>- Mike Oxonfire, Climate Pledge Times</figcaption>
+        </figure>
+      </div>
+
+      <p class="billing">
+        Climate Pledge Arena Pictures presents <span class="n">a Fifty Something Production</span>
+        a film by <span class="n">Adrienne Wenner</span> directed by <span class="n">Eddie Hayes</span><br>
+        starring <span class="n">Monique Sternik &middot; Adrienne Wenner &middot; Jay Cox &middot; Garrett Johnson &middot; Buoy &middot; Steve Ransom &middot; Tom Conroy</span>
+      </p>
+
+      <div class="spine">
+        <span class="cpa"><b>CPA</b><small>Home Video</small></span>
+        <span>Be kind. Rewind.</span>
+        <span>Made for Rush &middot; Seattle</span>
+      </div>
+    </div>
+  </main>
+
+  <script src="../shared/vendor/qrcode.js"></script>
+  <script src="flyer-config.js"></script>
+  <script src="flyer.js"></script>
+</body>
+</html>
